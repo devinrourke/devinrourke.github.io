@@ -561,7 +561,8 @@ ul.social a.sc-xing {
 	width: 33%;
 	vertical-align: top;
 	font-size: 11pt;
-	line-height: 1.1em;
+	line-height: 1.0em;
+	max-width: 100%;
 }
 
 #wrapper {
