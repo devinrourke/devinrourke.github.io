@@ -65,7 +65,7 @@ hr {
     height: 1px;
     border: none;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
 }
 
 img {
@@ -194,16 +194,34 @@ main .social-share p {
 }
 
 main article {
-    margin: 0 5% 0%
+    margin: 0 5% 0;
+}
+
+main article div {
+	line-height: 1.2em;
+}
+
+main article div h1 {
+	margin-top: 20px;
+	margin-bottom: 0px;
+}
+
+main article div p {
+	margin-top: 10px;
+	margin-bottom: 0px;
 }
 
 main article header h1, main article header h2 {
-    margin-bottom: 10px
+    margin-bottom: 0px;
+	margin-top: 10px;
+	margin-bottom: 0px;
 }
 
 main article header p {
     color: #999;
-    font-size: .86em
+    font-size: .86em;
+	margin-top: 0px;
+	margin-bottom: 10px;
 }
 
 main article header .translations {
@@ -221,23 +239,21 @@ main article samp {
     font-family: Source Code Pro, Consolas, monospace
 }
 
-main article blockquote,
-main article pre {
-    background-color: hsla(0, 0%, 50%, 0.05);
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    border-left: 8px solid hsla(0, 0%, 50%, .075);
-    border-left-width: 10px
-}
-
 main article blockquote {
-    padding: 10px 20px;
+    margin-top: 40px;
+	margin-bottom: 40px;
+	margin-left: 50px;
+    padding-left: 15px;
+    border-left: 3px solid #ccc;
     font-weight: 300;
-    font-size: 1.1em
+    font-size: 1.1em;
 }
 
 main article pre {
-    padding: 4px;
+    background-color: #f7f7f7;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding: 4px;
     font-size: .9em;
     overflow-x: auto
 }
@@ -266,7 +282,7 @@ main article code {
     white-space: nowrap;
     color: #c25;
     padding: 1px 3px;
-    background-color: #f7f7f9;
+    background-color: #f7f7f7;
     border: 1px solid #e1e1e8;
     border-radius: 3px
 }
