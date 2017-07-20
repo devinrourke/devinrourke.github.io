@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="https://devinrourke.github.io/theme/stylesheet/style.css">
+
+  <link rel="stylesheet" type="text/css" href="https://devinrourke.github.io/theme/pygments/default.min.css">
+  <link rel="stylesheet" type="text/css" href="https://devinrourke.github.io/theme/font-awesome/css/font-awesome.min.css">
+
+    <link href="https://devinrourke.github.io/theme/stylesheet/style.css" rel="stylesheet">
+
+
+
+    <link rel="shortcut icon" href="https://devinrourke.github.io/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="https://devinrourke.github.io/images/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+
+<meta name="author" content="Devin Rourke" />
+<meta name="description" content="Scraping 17 years worth of runner data from the interwebs, and plotting and learning from it with Python/Pandas and scikit-learn.Part 1 - Webscraping." />
+<meta name="keywords" content="python, data">
+<meta property="og:site_name" content="devinrourke"/>
+<meta property="og:title" content="milesplit, part 1 - scraping the web"/>
+<meta property="og:description" content="Scraping 17 years worth of runner data from the interwebs, and plotting and learning from it with Python/Pandas and scikit-learn.Part 1 - Webscraping."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="https://devinrourke.github.io/posts/python-milesplit-part1/"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2016-12-28 08:00:00-07:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="https://devinrourke.github.io/author/devin-rourke.html">
+<meta property="article:section" content="Projects"/>
+<meta property="article:tag" content="python"/>
+<meta property="article:tag" content="data"/>
+<meta property="og:image" content="">
+
+  <title>devinrourke &ndash; milesplit, part 1 - scraping the web</title>
+
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="https://devinrourke.github.io">
+        <img src="https://devinrourke.github.io/theme/img/profile.png" alt="Devin Rourke" title="Devin Rourke">
+      </a>
+      <h1><a href="https://devinrourke.github.io">Devin Rourke</a></h1>
+
+<p>running thoughts and projects</p>
+      <nav>
+	  <ul class="list">
+		<li><a href="https://devinrourke.github.io">Home</a></li>
+		  <li><a href="https://devinrourke.github.io/pages/aboutcv/">About/CV</a></li>
+
+          <li><a href="https://devinrourke.github.io/category/projects.html">Projects</a></li>
+          <li><a href="https://devinrourke.github.io/category/running.html">Running</a></li>
+          <li><a href="https://devinrourke.github.io/category/teach-and-coach.html">Teaching & Coaching</a></li>
+		  
+        </ul>
+      </nav>
+
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/devinrourke" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/devinrourke" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-envelope-o" href="mailto:devin.rourke@gmail.com" target="_blank"><i class="fa fa-envelope-o"></i></a></li>
+        <li><a class="sc-linkedin" href="https://linkedin.com/in/devinrourke/en" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+
+<article class="single">
+  <header>
+    <h1 id="python-milesplit-part1">milesplit, part 1 - scraping the web</h1>
+    <p>
+          Posted on Wed 28 December 2016 in <a href="https://devinrourke.github.io/category/projects.html">Projects</a>
+
+
+    </p>
+  </header>
+
+
+  <div>
+    <blockquote>
+<p>As a High School Cross Country coach, I visit <strong><a href="https://co.milesplit.com">co.milesplit.com</a></strong> quite often. So, for a fun week<s>end</s>long project, I thought I'd try to visualize some runner data.</p>
+<p>This is Part 1 - Webscraping. Head over to <strong><a href="../../posts/python-milesplit-part2">Part 2</a></strong> of this series of posts if you want to see how I plotted a bunch of the data. Additionally, if you'd rather just see the whole jupyter notebook file on nbviewer, click <strong><a href="http://nbviewer.jupyter.org/github/devinrourke/milesplit/blob/master/milesplit.ipynb">here</a></strong>.</p>
+<p><strong>I gave a "Tuesday Nerd Talk" about this project! Check it out <a href="../../posts/tnt">here</a></strong></p>
+</blockquote>
+<p><center>
+<img alt="milesplit" src="/images/milesplit.PNG" title="milesplit">
+</center></p>
+<p>To get the data for this project, I had thought of using the milesplit API, but there isn't much data available. Only the athletes' name, home state, and gender are made available. Also, since I <em>do</em> pay an annual subscription in order to browse milesplit's massive database, I feel a little less guilty about writing a script to do it for me.</p>
+<p>By simply looping through the below query strings, we can construct, visit, and harvest data from every possible URL within the milesplit domain.</p>
+<div class="highlight"><pre><span></span><span class="n">state</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;AL&quot;</span><span class="p">,</span> <span class="s2">&quot;AK&quot;</span><span class="p">,</span> <span class="s2">&quot;AZ&quot;</span><span class="p">,</span> <span class="s2">&quot;AR&quot;</span><span class="p">,</span> <span class="s2">&quot;CA&quot;</span><span class="p">,</span> <span class="s2">&quot;CO&quot;</span><span class="p">,</span> <span class="s2">&quot;CT&quot;</span><span class="p">,</span> <span class="s2">&quot;DC&quot;</span><span class="p">,</span> <span class="s2">&quot;DE&quot;</span><span class="p">,</span> <span class="s2">&quot;FL&quot;</span><span class="p">,</span> <span class="s2">&quot;GA&quot;</span><span class="p">,</span> <span class="s2">&quot;HI&quot;</span><span class="p">,</span> <span class="s2">&quot;ID&quot;</span><span class="p">,</span> <span class="s2">&quot;IL&quot;</span><span class="p">,</span> <span class="s2">&quot;IN&quot;</span><span class="p">,</span> <span class="s2">&quot;IA&quot;</span><span class="p">,</span> <span class="s2">&quot;KS&quot;</span><span class="p">,</span> <span class="s2">&quot;KY&quot;</span><span class="p">,</span> <span class="s2">&quot;LA&quot;</span><span class="p">,</span> <span class="s2">&quot;ME&quot;</span><span class="p">,</span> <span class="s2">&quot;MD&quot;</span><span class="p">,</span> <span class="s2">&quot;MA&quot;</span><span class="p">,</span> <span class="s2">&quot;MI&quot;</span><span class="p">,</span> <span class="s2">&quot;MN&quot;</span><span class="p">,</span> <span class="s2">&quot;MS&quot;</span><span class="p">,</span> <span class="s2">&quot;MO&quot;</span><span class="p">,</span> <span class="s2">&quot;MT&quot;</span><span class="p">,</span> <span class="s2">&quot;NE&quot;</span><span class="p">,</span> <span class="s2">&quot;NV&quot;</span><span class="p">,</span> <span class="s2">&quot;NH&quot;</span><span class="p">,</span> <span class="s2">&quot;NJ&quot;</span><span class="p">,</span> <span class="s2">&quot;NM&quot;</span><span class="p">,</span> <span class="s2">&quot;NY&quot;</span><span class="p">,</span> <span class="s2">&quot;NC&quot;</span><span class="p">,</span> <span class="s2">&quot;ND&quot;</span><span class="p">,</span> <span class="s2">&quot;OH&quot;</span><span class="p">,</span> <span class="s2">&quot;OK&quot;</span><span class="p">,</span> <span class="s2">&quot;OR&quot;</span><span class="p">,</span> <span class="s2">&quot;PA&quot;</span><span class="p">,</span> <span class="s2">&quot;RI&quot;</span><span class="p">,</span> <span class="s2">&quot;SC&quot;</span><span class="p">,</span> <span class="s2">&quot;SD&quot;</span><span class="p">,</span> <span class="s2">&quot;TN&quot;</span><span class="p">,</span> <span class="s2">&quot;TX&quot;</span><span class="p">,</span> <span class="s2">&quot;UT&quot;</span><span class="p">,</span> <span class="s2">&quot;VT&quot;</span><span class="p">,</span> <span class="s2">&quot;VA&quot;</span><span class="p">,</span> <span class="s2">&quot;WA&quot;</span><span class="p">,</span> <span class="s2">&quot;WV&quot;</span><span class="p">,</span> <span class="s2">&quot;WI&quot;</span><span class="p">,</span> <span class="s2">&quot;WY&quot;</span><span class="p">]</span>
+<span class="n">gender</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Boys&#39;</span><span class="p">,</span> <span class="s1">&#39;Girls&#39;</span><span class="p">]</span>
+<span class="n">year</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;2000&#39;</span><span class="p">,</span><span class="s1">&#39;2001&#39;</span><span class="p">,</span><span class="s1">&#39;2002&#39;</span><span class="p">,</span><span class="s1">&#39;2003&#39;</span><span class="p">,</span><span class="s1">&#39;2004&#39;</span><span class="p">,</span><span class="s1">&#39;2005&#39;</span><span class="p">,</span><span class="s1">&#39;2006&#39;</span><span class="p">,</span><span class="s1">&#39;2007&#39;</span><span class="p">,</span> <span class="s1">&#39;2008&#39;</span><span class="p">,</span><span class="s1">&#39;2009&#39;</span><span class="p">,</span><span class="s1">&#39;2010&#39;</span><span class="p">,</span><span class="s1">&#39;2011&#39;</span><span class="p">,</span><span class="s1">&#39;2012&#39;</span><span class="p">,</span><span class="s1">&#39;2013&#39;</span><span class="p">,</span><span class="s1">&#39;2014&#39;</span><span class="p">,</span><span class="s1">&#39;2015&#39;</span><span class="p">,</span><span class="s1">&#39;2016&#39;</span><span class="p">]</span>
+<span class="n">page</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;3&#39;</span><span class="p">,</span><span class="s1">&#39;4&#39;</span><span class="p">,</span><span class="s1">&#39;5&#39;</span><span class="p">,</span><span class="s1">&#39;6&#39;</span><span class="p">,</span><span class="s1">&#39;7&#39;</span><span class="p">,</span><span class="s1">&#39;8&#39;</span><span class="p">,</span><span class="s1">&#39;9&#39;</span><span class="p">,</span><span class="s1">&#39;10&#39;</span><span class="p">,</span> <span class="s1">&#39;11&#39;</span><span class="p">,</span><span class="s1">&#39;12&#39;</span><span class="p">,</span><span class="s1">&#39;13&#39;</span><span class="p">,</span><span class="s1">&#39;14&#39;</span><span class="p">,</span><span class="s1">&#39;15&#39;</span><span class="p">,</span><span class="s1">&#39;16&#39;</span><span class="p">,</span><span class="s1">&#39;17&#39;</span><span class="p">,</span><span class="s1">&#39;18&#39;</span><span class="p">,</span><span class="s1">&#39;19&#39;</span><span class="p">,</span><span class="s1">&#39;20&#39;</span><span class="p">]</span>
+<span class="n">season</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;/cross-country&quot;</span><span class="p">,</span><span class="s2">&quot;/outdoor-track-and-field&quot;</span><span class="p">]</span>
+<span class="n">event</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;/5000m?year=&quot;</span><span class="p">,</span> <span class="s2">&quot;/100m?year=&quot;</span><span class="p">,</span> <span class="s2">&quot;/200m?year=&quot;</span><span class="p">,</span> <span class="s2">&quot;/400m?year=&quot;</span><span class="p">,</span> <span class="s2">&quot;/800m?year=&quot;</span><span class="p">,</span> <span class="s2">&quot;/1600m?year=&quot;</span><span class="p">,</span> <span class="s2">&quot;/3200m?year=&quot;</span><span class="p">,</span> <span class="s2">&quot;/100mH?year=&quot;</span><span class="p">,</span> <span class="s2">&quot;/110mH?year=&quot;</span><span class="p">,</span> <span class="s2">&quot;/300mH?year=&quot;</span><span class="p">,</span> <span class="s2">&quot;/HJ?year=&quot;</span><span class="p">,</span> <span class="s2">&quot;/LJ?year=&quot;</span><span class="p">,</span> <span class="s2">&quot;/TJ?year=&quot;</span><span class="p">,</span> <span class="s2">&quot;/PV?year=&quot;</span><span class="p">,</span> <span class="s2">&quot;/SP?year=&quot;</span><span class="p">,</span> <span class="s2">&quot;/DT?year=&quot;</span><span class="p">]</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://&quot;</span> <span class="o">+</span> <span class="n">state</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.milesplit.com/rankings/events/&quot;</span> <span class="o">+</span> <span class="s2">&quot;high-school-&quot;</span> <span class="o">+</span> <span class="n">gender</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">season</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">event</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">year</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;&amp;page=&quot;</span> <span class="o">+</span> <span class="n">page</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+
+<p>Next, I use selenium to set up a Chrome webdriver, navigate to a page <code>driver.get(url)</code>, enter login details <code>.send_keys()</code>, and click 'continue'. Before running this code, the executable for whatever browser you wish to use (in my case, Chrome) needs to be in the same directory as the script. I have omitted my actual username and password, replacing them with strings of 'X'.</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<span class="kn">import</span> <span class="nn">html5lib</span><span class="o">,</span> <span class="nn">lxml</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">()</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="n">username</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_name</span><span class="p">(</span><span class="s2">&quot;username&quot;</span><span class="p">)</span>
+<span class="n">password</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_name</span><span class="p">(</span><span class="s2">&quot;password&quot;</span><span class="p">)</span>
+<span class="n">username</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="s2">&quot;XXXXXX&quot;</span><span class="p">)</span>
+<span class="n">password</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="s2">&quot;XXXXXX&quot;</span><span class="p">)</span>
+
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_xpath</span><span class="p">(</span><span class="s2">&quot;//a[contains(@class, &#39;btn-continue&#39;)]&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+</pre></div>
+
+
+<p>The <code>time.sleep(3)</code> line is required to allow the ad-heavy javascript login screen time to load and the button to become clickable. Once we're in, we can loop through each of the urls described above and harvest the raw html. Then, using the handy pandas <code>.read_html()</code> method, the table(s) within the raw html (identified by the <code>&lt;tr&gt;</code> tags) are parsed into dataframes. The looping and key harvesting steps look like this:</p>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">ge</span> <span class="ow">in</span> <span class="n">gender</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">st</span> <span class="ow">in</span> <span class="n">state</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">yr</span> <span class="ow">in</span> <span class="n">year</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">pg</span> <span class="ow">in</span> <span class="n">page</span><span class="p">:</span>
+                <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://&quot;</span> <span class="o">+</span> <span class="n">st</span> <span class="o">+</span> <span class="s2">&quot;.milesplit.com/rankings/events/&quot;</span> <span class="o">+</span> <span class="s2">&quot;high-school-&quot;</span> <span class="o">+</span> <span class="n">ge</span> <span class="o">+</span> <span class="s2">&quot;/cross-country/5000m?year=&quot;</span> <span class="o">+</span> <span class="n">yr</span> <span class="o">+</span> <span class="s2">&quot;&amp;page=&quot;</span> <span class="o">+</span> <span class="n">pg</span>
+                <span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1">#wait until whole table loads, or, pretend I&#39;m not a robot</span>
+                <span class="n">content</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">page_source</span>
+                <span class="n">df_page</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_html</span><span class="p">(</span><span class="n">content</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+
+<p>The trailing <code>[0]</code> there is just specifying <em>which</em> html table I want to keep and save in my master df. On each url I am visiting, I expect only one table, so I'm keeping only the first. Although the <code>pandas.read_html()</code> <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.read_html.html">documentation</a> indicated that I should "expect to do some cleanup" after calling this function, all that was needed was some relabeling of columns, and to <code>apply</code> a lambda function to deal with the <code>Time</code> column. I wanted the 5K time in seconds as a float. The cleanup looks like this:</p>
+<div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Rank&#39;</span><span class="p">,</span> <span class="s1">&#39;Time&#39;</span><span class="p">,</span><span class="s1">&#39;Athlete/School&#39;</span><span class="p">,</span><span class="s1">&#39;Grade&#39;</span><span class="p">,</span><span class="s1">&#39;Meet&#39;</span><span class="p">,</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span><span class="s1">&#39;State&#39;</span><span class="p">,</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">+</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]))</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Grade&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Grade&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;5K.csv&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>That last line simply exports the df to a (rather large) .csv file.</p>
+<p>When I actually used this script, I increased the <code>time.sleep(#)</code> duration to 3 or 4 seconds, to maintain the illusion, at least as far as milesplit's servers were concerned, that my web scraper was just an overly enthusiastic high school cross country fanatic. In retrospect, I should probably just email them with stats about the completeness of their database (see part 2). Maybe they'd find that helpful? If anyone at milesplit reads this, get in touch! I really mean no ill will!</p>
+<p>In part 2, I outline how I used pandas, matplotlib, and other fun tools to make a whole buncha graphs about running data. Running the script above for just one event (HS 5K) and both genders resulted in 10 columns and very nearly 1 million rows of data. Head to <a href="../../posts/python-milesplit-part2">Part 2</a> to see some cool graphs and stats!</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://devinrourke.github.io/tag/python.html">python</a>
+      <a href="https://devinrourke.github.io/tag/data.html">data</a>
+    </p>
+  </div>
+
+
+
+
+</article>
+
+    <footer>
+<p>&copy; Devin Rourke 2017</p>
+<p></p>    </footer>
+  </main>
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " devinrourke ",
+  "url" : "https://devinrourke.github.io",
+  "image": "",
+  "description": ""
+}
+</script>
+</body>
+</html>

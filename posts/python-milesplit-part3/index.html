@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="https://devinrourke.github.io/theme/stylesheet/style.css">
+
+  <link rel="stylesheet" type="text/css" href="https://devinrourke.github.io/theme/pygments/default.min.css">
+  <link rel="stylesheet" type="text/css" href="https://devinrourke.github.io/theme/font-awesome/css/font-awesome.min.css">
+
+    <link href="https://devinrourke.github.io/theme/stylesheet/style.css" rel="stylesheet">
+
+
+
+    <link rel="shortcut icon" href="https://devinrourke.github.io/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="https://devinrourke.github.io/images/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+
+<meta name="author" content="Devin Rourke" />
+<meta name="description" content="Scraping 17 years worth of runner data from the interwebs, and plotting and learning from it with Python/Pandas and scikit-learn.Part 3 - Statistics." />
+<meta name="keywords" content="python, data">
+<meta property="og:site_name" content="devinrourke"/>
+<meta property="og:title" content="milesplit, part 3 - statistics"/>
+<meta property="og:description" content="Scraping 17 years worth of runner data from the interwebs, and plotting and learning from it with Python/Pandas and scikit-learn.Part 3 - Statistics."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="https://devinrourke.github.io/posts/python-milesplit-part3/"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2017-03-01 08:00:00-07:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="https://devinrourke.github.io/author/devin-rourke.html">
+<meta property="article:section" content="Projects"/>
+<meta property="article:tag" content="python"/>
+<meta property="article:tag" content="data"/>
+<meta property="og:image" content="">
+
+  <title>devinrourke &ndash; milesplit, part 3 - statistics</title>
+
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="https://devinrourke.github.io">
+        <img src="https://devinrourke.github.io/theme/img/profile.png" alt="Devin Rourke" title="Devin Rourke">
+      </a>
+      <h1><a href="https://devinrourke.github.io">Devin Rourke</a></h1>
+
+<p>running thoughts and projects</p>
+      <nav>
+	  <ul class="list">
+		<li><a href="https://devinrourke.github.io">Home</a></li>
+		  <li><a href="https://devinrourke.github.io/pages/aboutcv/">About/CV</a></li>
+
+          <li><a href="https://devinrourke.github.io/category/projects.html">Projects</a></li>
+          <li><a href="https://devinrourke.github.io/category/running.html">Running</a></li>
+          <li><a href="https://devinrourke.github.io/category/teach-and-coach.html">Teaching & Coaching</a></li>
+		  
+        </ul>
+      </nav>
+
+      <ul class="social">
+        <li><a class="sc-twitter" href="http://twitter.com/devinrourke" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/devinrourke" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-envelope-o" href="mailto:devin.rourke@gmail.com" target="_blank"><i class="fa fa-envelope-o"></i></a></li>
+        <li><a class="sc-linkedin" href="https://linkedin.com/in/devinrourke/en" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+
+<article class="single">
+  <header>
+    <h1 id="python-milesplit-part3">milesplit, part 3 - statistics</h1>
+    <p>
+          Posted on Wed 01 March 2017 in <a href="https://devinrourke.github.io/category/projects.html">Projects</a>
+
+
+    </p>
+  </header>
+
+
+  <div>
+    <blockquote>
+<p>As a High School Cross Country coach, I visit <strong><a href="https://co.milesplit.com">co.milesplit.com</a></strong> quite often. So, for a fun week<s>end</s>long project, I thought I'd try to visualize some runner data.</p>
+<p>This is Part 3 - Statistics. Head over to <strong><a href="../../posts/python-milesplit-part1">Part 1</a></strong> or <strong><a href="../../posts/python-milesplit-part2">Part 2</a></strong> of this series of posts if you want to see how I got all the data, and plotted it, respectively. Additionally, if you'd rather just see the whole jupyter notebook file on nbviewer, click <strong><a href="http://nbviewer.jupyter.org/github/devinrourke/milesplit/blob/master/milesplit.ipynb">here</a></strong>.</p>
+<p><strong>I gave a "Tuesday Nerd Talk" about this project! Check it out <a href="../../posts/tnt">here</a></strong></p>
+</blockquote>
+<p><center>
+<img alt="milesplit" src="/images/milesplit.PNG" title="milesplit">
+</center></p>
+<p>My main question at the outset was how much elevation impacts runners. Empirically, the going rate for an "altitude 5K" vs. a "sea level 5K" is 20-30 seconds. This is the number most coaches use to convert between altitude and sea-level 5K performances. The lower atmospheric pressure at altitude simply means there less oxygen in the air, and for an event that is primarily aerobic, that lack of oxygen has a big impact. Interestingly, sprinting events like the 100m or 200m dash <strong>benefit</strong> from higher altitude, for two reasons: 1) the event is primarily anaerobic, so oxygen supply doesn't matter and 2) there is less air resistance! More on this trend later...</p>
+<h2>Linear Regression</h2>
+<p>For now, let's see if our data verifies the empirically-determined "20-30sec per 5K" conversion. In particular, we expect runners "at altitude" to run 5K races, on average, 20-30 seconds slower. For this purpose, "altitude" is generally considered 5,000 ft or higher.</p>
+<p>In our dataframe, since Time (in seconds) and Elevation (in feet) are continuous numeric variables, this is simple! A linear regression looks like this:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="kn">as</span> <span class="nn">smf</span>
+
+<span class="n">lm</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="s1">&#39;Time ~ Elevation&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">dfsimple</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="n">lm</span><span class="o">.</span><span class="n">params</span>
+</pre></div>
+
+
+<ul>
+<li>In the first line, our <code>import</code> statement imports the statsmodels package, which allows us to do a simple linear regression.  </li>
+<li>The second line defines the model we will be using, and the variables we wish to fit. In this case, we're looking at the impact that Elevation has on Time.</li>
+<li>The third and final line simply prints our parameters.</li>
+</ul>
+<p>The output is:<br>
+Intercept    1213.539906<br>
+Elevation       0.003280<br>
+dtype: float64  </p>
+<p>We interpret this as follows: "for every unit of Elevation gain (in feet), Time increases by 0.003280 units (in seconds)". Evidently, our data is telling us that for every 1000 feet of elevation gain, a runner's 5K time increases (so, they go slower) by 3.3 seconds. For a performance at 5000 feet, which is commonly thought of as an "altitude performance", that number is 5*3.3 seconds = 16.5 seconds.  </p>
+<p>Cool! Our data agrees with the "typical" number used in the sport. The 20-30 sec rule applies across the board, whereas our number was derived from the top 1000 performances in each state each year. Therefore, it makes sense that our number is a little bit lower, since athletes who are more athletically fit are less susceptible to the effects of altitude.</p>
+<p>Repeating this linear regression analysis for other distance races gives us the following:</p>
+<p><center>
+<img alt="altitude conversion" src="/images/altconv.png" title="altitude conversion">
+</center></p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://devinrourke.github.io/tag/python.html">python</a>
+      <a href="https://devinrourke.github.io/tag/data.html">data</a>
+    </p>
+  </div>
+
+
+
+
+</article>
+
+    <footer>
+<p>&copy; Devin Rourke 2017</p>
+<p></p>    </footer>
+  </main>
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " devinrourke ",
+  "url" : "https://devinrourke.github.io",
+  "image": "",
+  "description": ""
+}
+</script>
+</body>
+</html>
