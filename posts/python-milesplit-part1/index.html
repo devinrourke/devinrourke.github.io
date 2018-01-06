@@ -1070,8 +1070,9 @@ h6:hover .anchor-link {
 <p>This is Part 1 - Webscraping. Head over to <em><a href="../../posts/python-milesplit-part2">Part 2</a></em> of this series of posts if you want to see how I plotted a bunch of the data. Additionally, if you'd rather just see the whole jupyter notebook file on nbviewer, click <em><a href="http://nbviewer.jupyter.org/github/devinrourke/milesplit/blob/master/milesplit.ipynb">here</a></em>.</p>
 <p><em>I gave a "Tuesday Nerd Talk" about this project! Check it out <a href="../../posts/tnt">here</a></em></p>
 </blockquote>
-<p><img alt="milesplit" src="../images/milesplit.png" title="milesplit" /></p>
-<p>To get the data for this project, I had thought of using the milesplit API, but there isn't much data available. Only the athletes' name, home state, and gender are made available. Also, since I <em>do</em> pay an annual subscription in order to browse milesplit's massive database, I feel a little less guilty about writing a script to do it for me.</p>
+<center>
+![milesplit](/images/milesplit.PNG "milesplit")
+</center><p>To get the data for this project, I had thought of using the milesplit API, but there isn't much data available. Only the athletes' name, home state, and gender are made available. Also, since I <em>do</em> pay an annual subscription in order to browse milesplit's massive database, I feel a little less guilty about writing a script to do it for me.</p>
 <p>By simply looping through the below query strings, we can construct, visit, and harvest data from every possible URL within the milesplit domain.</p>
 </div>
 </div>
@@ -1143,7 +1144,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The <code>time.sleep(3)</code> line is required to allow the ad-heavy javascript login screen time to load and the button to become clickable. Once we're in, we can loop through each of the urls described above and harvest the raw html. Then, using the handy pandas <code>.read_html()</code> method, the table(s) within the raw html (identified by the <code>&lttr;&gt;</code> tags) are parsed into dataframes. The looping and key harvesting steps look like this:</p>
+<p>The <code>time.sleep(3)</code> line is required to allow the ad-heavy javascript login screen time to load and the button to become clickable. Once we're in, we can loop through each of the urls described above and harvest the raw html. Then, using the handy pandas <code>.read_html()</code> method, the table(s) within the raw html (identified by the <code>&lt;tr&gt;</code> tags) are parsed into dataframes. The looping and key harvesting steps look like this:</p>
 </div>
 </div>
 </div>
