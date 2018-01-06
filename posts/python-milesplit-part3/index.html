@@ -1071,8 +1071,8 @@ h6:hover .anchor-link {
 <p><em>I gave a "Tuesday Nerd Talk" about this project! Check it out <a href="../../posts/tnt">here</a></em></p>
 </blockquote>
 <center>
-![milesplit](/images/milesplit.PNG "milesplit")
-</center><p>My main question at the outset was how much elevation impacts runners. Empirically, the going rate for an "altitude 5K" vs. a "sea level 5K" is 20-30 seconds. This is the number most coaches use to convert between altitude and sea-level 5K performances. The lower atmospheric pressure at altitude simply means there less oxygen in the air, and for an event that is primarily aerobic, that lack of oxygen has a big impact. Interestingly, sprinting events like the 100m or 200m dash <strong>benefit</strong> from higher altitude, for two reasons: 1) the event is primarily anaerobic, so oxygen supply doesn't matter and 2) there is less air resistance! More on this trend later...</p>
+<img src="/images/milesplit.PNG">
+</img></center><p>My main question at the outset was how much elevation impacts runners. Empirically, the going rate for an "altitude 5K" vs. a "sea level 5K" is 20-30 seconds. This is the number most coaches use to convert between altitude and sea-level 5K performances. The lower atmospheric pressure at altitude simply means there less oxygen in the air, and for an event that is primarily aerobic, that lack of oxygen has a big impact. Interestingly, sprinting events like the 100m or 200m dash <strong>benefit</strong> from higher altitude, for two reasons: 1) the event is primarily anaerobic, so oxygen supply doesn't matter and 2) there is less air resistance! More on this trend later...</p>
 <h2 id="Linear-Regression">Linear Regression<a class="anchor-link" href="#Linear-Regression">¶</a></h2><p>For now, let's see if our data verifies the empirically-determined "20-30sec per 5K" conversion. In particular, we expect runners "at altitude" to run 5K races, on average, 20-30 seconds slower. For this purpose, "altitude" is generally considered 5,000 ft or higher.</p>
 <p>In our dataframe, since Time (in seconds) and Elevation (in feet) are continuous numeric variables, this is simple! A linear regression looks like this:</p>
 </div>
@@ -1111,8 +1111,19 @@ dtype: float64</br></br></br></p>
 <p>Cool! Our data agrees with the "typical" number used in the sport. The 20-30 sec rule applies across the board, whereas our number was derived from the top 1000 performances in each state each year. Therefore, it makes sense that our number is a little bit lower, since athletes who are more athletically fit are less susceptible to the effects of altitude.</p>
 <p>Repeating this linear regression analysis for other distance races gives us the following:</p>
 <center>
-![altitude conversion](/images/altconv.png "altitude conversion")
-</center>
+<img src="/images/altconv.png">
+</img></center>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+</div>
 </div>
 </div>
 </div>
