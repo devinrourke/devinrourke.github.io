@@ -24,11 +24,11 @@
 
 
 <meta name="author" content="Devin Rourke" />
-<meta name="description" content="Strava allows bulk download of your activities. Python and the Google Maps API does the rest!" />
+<meta name="description" content="Strava allows bulk download of your activities. Python and the Google Maps API do the rest!" />
 <meta name="keywords" content="python, data, running">
 <meta property="og:site_name" content="devinrourke"/>
 <meta property="og:title" content="hacking a personal Strava heatmap"/>
-<meta property="og:description" content="Strava allows bulk download of your activities. Python and the Google Maps API does the rest!"/>
+<meta property="og:description" content="Strava allows bulk download of your activities. Python and the Google Maps API do the rest!"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="https://devinrourke.github.io/posts/personal-strava-heatmap/"/>
 <meta property="og:type" content="article"/>
@@ -1067,7 +1067,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Make-a-personal-heatmap-from-your-Strava-activities">Make a personal heatmap from your Strava activities<a class="anchor-link" href="#Make-a-personal-heatmap-from-your-Strava-activities">¶</a></h1><p>Your 'personal' heatmap.  Its a Strava Premium feature (I think?) But it also provided me some inspiration to try to do it myself! You can bulk download all the activities you've ever uploaded to Strava, from Strava, be going to your 'settings' page, bottom right hand side of page, and clicking 'Download All Activities'. You'll get a download link by email, its active for 48 hours. Click it, and you get a zip archive of GPX files. These are the files that get 'synched' from your watch --> phone --> Garmin Connect app --> Strava.</p>
+<p>Your 'personal' heatmap.  Its a Strava Premium feature (I think?) But it also provided me some inspiration to try to do it myself! You can bulk download all the activities you've ever uploaded to Strava, from Strava, be going to your 'settings' page, bottom right hand side of page, and clicking 'Download All Activities'. You'll get a download link by email, its active for 48 hours. Click it, and you get a zip archive of GPX files. These are the files that get 'synched' from your watch --> phone --> Garmin Connect app --> Strava.</p>
 <p><strong>Taking a look at one of my GPX files, the raw file looks like this:</strong></p>
 </div>
 </div>
@@ -1077,30 +1077,30 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="nt"><trk></span>
-  <span class="nt"><name></span>In the Park, w/ GK and Rach<span class="nt"></name></span>
-  <span class="nt"><trkseg></span>
-   <span class="nt"><trkpt&lt; span> <span class="na">lat=</span><span class="s">"43.0569910"</span> <span class="na">lon=</span><span class="s">"-73.8009940"</span><span class="nt">></span>
-    <span class="nt"><ele></span>93.2<span class="nt"></ele></span>
-    <span class="nt"><time></span>2017-01-02T17:41:52Z<span class="nt"></time></span>
-    <span class="nt"><extensions></span>
-     <span class="nt"><gpxtpx:trackpointextension></span>
-      <span class="nt"><gpxtpx:cad></span>0<span class="nt"></gpxtpx:cad></span>
-     <span class="nt"></gpxtpx:trackpointextension></span>
-    <span class="nt"></extensions></span>
-   <span class="nt"></trkpt></span>
-   <span class="nt"><trkpt&lt; span> <span class="na">lat=</span><span class="s">"43.0568540"</span> <span class="na">lon=</span><span class="s">"-73.8011450"</span><span class="nt">></span>
-    <span class="nt"><ele></span>93.0<span class="nt"></ele></span>
-    <span class="nt"><time></span>2017-01-02T17:42:00Z<span class="nt"></time></span>
-    <span class="nt"><extensions></span>
-     <span class="nt"><gpxtpx:trackpointextension></span>
-      <span class="nt"><gpxtpx:cad></span>89<span class="nt"></gpxtpx:cad></span>
-     <span class="nt"></gpxtpx:trackpointextension></span>
-    <span class="nt"></extensions></span>
-   <span class="nt"></trkpt></span>
- ...
-<span class="nt"><trk></span>
-</pre></div>
+<pre><code>    <trk>
+      <name>In the Park, w/ GK and Rach</name>
+      <trkseg>
+       <trkpt lat="43.0569910" lon="-73.8009940">
+        <ele>93.2</ele>
+        <time>2017-01-02T17:41:52Z</time>
+        <extensions>
+         <gpxtpx:trackpointextension>
+          <gpxtpx:cad>0</gpxtpx:cad>
+         </gpxtpx:trackpointextension>
+        </extensions>
+       </trkpt>
+       <trkpt lat="43.0568540" lon="-73.8011450">
+        <ele>93.0</ele>
+        <time>2017-01-02T17:42:00Z</time>
+        <extensions>
+         <gpxtpx:trackpointextension>
+          <gpxtpx:cad>89</gpxtpx:cad>
+         </gpxtpx:trackpointextension>
+        </extensions>
+       </trkpt>
+     ...
+    <trk>
+</code></pre>
 <p>Its basically just XML. I'll let you figure out what <code>lat</code>, <code>lon</code>, <code>ele</code>, and <code>cad</code> stand for. More sophisticated watches than my Garmin 220 might have more data fields, but this is already enough to play with for now! We'll use the nifty <a href="https://github.com/tkrajina/gpxpy/blob/master/README.md">gpxpy</a> package to parse the XML, and then use <a href="https://github.com/pbugnion/gmaps">gmaps</a> to make ourselves a heatmap.</p>
 </div>
 </div>
@@ -1258,7 +1258,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Thanks-for-reading,-good-luck-with-yours,-and-enjoy-expanding-your-personal-heatmap-out-on-the-trails!">Thanks for reading, good luck with yours, and enjoy expanding your personal heatmap out on the trails!<a class="anchor-link" href="#Thanks-for-reading,-good-luck-with-yours,-and-enjoy-expanding-your-personal-heatmap-out-on-the-trails!">¶</a></h3>
+<p><strong>Thanks for reading, good luck with yours, and enjoy expanding your personal heatmap out on the trails!</strong></p>
 </div>
 </div>
 </div>
