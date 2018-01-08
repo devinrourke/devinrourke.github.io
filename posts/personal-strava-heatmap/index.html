@@ -1067,8 +1067,50 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Make-a-personal-heatmap-from-your-Strava-activities">Make a personal heatmap from your Strava activities<a class="anchor-link" href="#Make-a-personal-heatmap-from-your-Strava-activities">¶</a></h1><p>Bulk download from Strava ('settings' page, bottom right hand side of page, get an email to download zip archive)</p>
-<p>Here is a bunch more explanatory text! One day I'll finish this post!</p>
+<h1 id="Make-a-personal-heatmap-from-your-Strava-activities">Make a personal heatmap from your Strava activities<a class="anchor-link" href="#Make-a-personal-heatmap-from-your-Strava-activities">¶</a></h1><p>Your 'personal' heatmap.  Its a Strava Premium feature (I think?) But it also provided me some inspiration to try to do it myself! You can bulk download all the activities you've ever uploaded to Strava, from Strava, be going to your 'settings' page, bottom right hand side of page, and clicking 'Download All Activities'. You'll get a download link by email, its active for 48 hours. Click it, and you get a zip archive of GPX files. These are the files that get 'synched' from your watch --> phone --> Garmin Connect app --> Strava.</p>
+<p><strong>Taking a look at one of my GPX files, the raw file looks like this:</strong></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="nt"><trk></span>
+  <span class="nt"><name></span>In the Park, w/ GK and Rach<span class="nt"></name></span>
+  <span class="nt"><trkseg></span>
+   <span class="nt"><trkpt&lt; span> <span class="na">lat=</span><span class="s">"43.0569910"</span> <span class="na">lon=</span><span class="s">"-73.8009940"</span><span class="nt">></span>
+    <span class="nt"><ele></span>93.2<span class="nt"></ele></span>
+    <span class="nt"><time></span>2017-01-02T17:41:52Z<span class="nt"></time></span>
+    <span class="nt"><extensions></span>
+     <span class="nt"><gpxtpx:trackpointextension></span>
+      <span class="nt"><gpxtpx:cad></span>0<span class="nt"></gpxtpx:cad></span>
+     <span class="nt"></gpxtpx:trackpointextension></span>
+    <span class="nt"></extensions></span>
+   <span class="nt"></trkpt></span>
+   <span class="nt"><trkpt&lt; span> <span class="na">lat=</span><span class="s">"43.0568540"</span> <span class="na">lon=</span><span class="s">"-73.8011450"</span><span class="nt">></span>
+    <span class="nt"><ele></span>93.0<span class="nt"></ele></span>
+    <span class="nt"><time></span>2017-01-02T17:42:00Z<span class="nt"></time></span>
+    <span class="nt"><extensions></span>
+     <span class="nt"><gpxtpx:trackpointextension></span>
+      <span class="nt"><gpxtpx:cad></span>89<span class="nt"></gpxtpx:cad></span>
+     <span class="nt"></gpxtpx:trackpointextension></span>
+    <span class="nt"></extensions></span>
+   <span class="nt"></trkpt></span>
+ ...
+<span class="nt"><trk></span>
+</pre></div>
+<p>Its basically just XML. I'll let you figure out what <code>lat</code>, <code>lon</code>, <code>ele</code>, and <code>cad</code> stand for. More sophisticated watches than my Garmin 220 might have more data fields, but this is already enough to play with for now! We'll use the nifty <a href="https://github.com/tkrajina/gpxpy/blob/master/README.md">gpxpy</a> package to parse the XML, and then use <a href="https://github.com/pbugnion/gmaps">gmaps</a> to make ourselves a heatmap.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Import dependencies and data:</strong></p>
 </div>
 </div>
 </div>
@@ -1077,14 +1119,10 @@ h6:hover .anchor-link {
 <div class="prompt input_prompt">In [1]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">gpxpy</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">gpxpy.gpx</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">gmaps</span>
-
-<span class="o">%</span><span class="k">matplotlib</span> inline
 </pre></div>
 </div>
 </div>
@@ -1098,6 +1136,15 @@ h6:hover .anchor-link {
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">gpx_files</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">'../images/activities'</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Loop through all the GPX files and put lats and lons in a df:</strong></p>
 </div>
 </div>
 </div>
@@ -1131,9 +1178,18 @@ h6:hover .anchor-link {
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Drop unneccesary columns:</strong></p>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In [4]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">runningheatmap</span> <span class="o">=</span> <span class="n">heatcoords_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'Altitude'</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
@@ -1145,9 +1201,21 @@ h6:hover .anchor-link {
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>For this next part, you'll need a (free) Google Maps API key. Get one <a href="https://developers.google.com/maps/documentation/">here</a>.</strong></p>
+<p>Once you have your key, run:
+<code>gmaps.configure(api_key="your key here")</code></p>
+<p>Then, you're ready to initialize the map, define zoom levels, define your 'center' lat and lon location (I chose Boulder, CO), and set other parameters like max_intensity, point_radius, opacity, etc. Check the Google Maps heatmap docs for deets:</p>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In [6]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">gmaps</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">zoom_level</span> <span class="o">=</span> <span class="mi">11</span><span class="p">,</span> <span class="n">center</span> <span class="o">=</span> <span class="p">(</span><span class="mf">40.014984</span><span class="p">,</span> <span class="o">-</span><span class="mf">105.270546</span><span class="p">))</span>
@@ -1158,6 +1226,16 @@ h6:hover .anchor-link {
 <span class="n">fig</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">heatmap</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Calling <code>fig</code> here spits out a sweet heatmap..</strong></p>
+<p>Its zoomable, clickable, pan-able, ..colors rescale as needed for visibility, etc. But the widget, which <em>does</em> embed nicely into the Jupyer notebook, unfortunately doesn't make the cut for my (mostly) static site. Alas, a screenshot will have to do:</p>
 </div>
 </div>
 </div>
@@ -1172,6 +1250,15 @@ h6:hover .anchor-link {
 <center>
 <img src="/images/map.png">
 </img></center>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Thanks-for-reading,-good-luck-with-yours,-and-enjoy-expanding-your-personal-heatmap-out-on-the-trails!">Thanks for reading, good luck with yours, and enjoy expanding your personal heatmap out on the trails!<a class="anchor-link" href="#Thanks-for-reading,-good-luck-with-yours,-and-enjoy-expanding-your-personal-heatmap-out-on-the-trails!">¶</a></h3>
 </div>
 </div>
 </div>
