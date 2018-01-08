@@ -1122,47 +1122,13 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [4]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#hidden</span>
-<span class="c1"># print("Name: " + gpx_track.name)</span>
-<span class="c1"># print("Description: " + str(gpx_track.description))</span>
-<span class="c1"># print("Start: " + str(gpx_track.get_time_bounds().start_time.isoformat()))</span>
-<span class="c1"># print("End: " + str(gpx_track.get_time_bounds().end_time))</span>
- 
-<span class="c1"># bounds = gpx_track.get_bounds()</span>
-<span class="c1"># print("Latitude Bounds: (%f, %f)" % (bounds.min_latitude, bounds.max_latitude))</span>
-<span class="c1"># print("Longitude Bounds: (%f, %f)" % (bounds.min_longitude, bounds.max_longitude))</span>
-</pre></div>
-</div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [5]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#hidden</span>
-<span class="c1"># round(gpx_track.get_duration()*1./60, 2)</span>
-</pre></div>
-</div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [6]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#hidden</span>
-<span class="c1"># round(gpx_track.length_2d()/1609.34, 2)</span>
-</pre></div>
-</div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -1176,20 +1142,11 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [8]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#hidden</span>
-<span class="n">gmaps</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s2">"AIzaSyCWGmXSL75gi_IMA3ViVRQ_597I4Gtn7VE"</span><span class="p">)</span> <span class="c1"># Your Google API key</span>
-</pre></div>
-</div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In [11]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">gmaps</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">zoom_level</span> <span class="o">=</span> <span class="mi">11</span><span class="p">,</span> <span class="n">center</span> <span class="o">=</span> <span class="p">(</span><span class="mf">40.014984</span><span class="p">,</span> <span class="o">-</span><span class="mf">105.270546</span><span class="p">))</span>
@@ -1198,30 +1155,22 @@ h6:hover .anchor-link {
 <span class="n">heatmap</span><span class="o">.</span><span class="n">point_radius</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">heatmap</span><span class="o">.</span><span class="n">opacity</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">heatmap</span><span class="p">)</span>
-<span class="n">fig</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area"><div class="prompt"></div>
-<div class="output_html rendered_html output_subarea ">
-<p>Failed to display Jupyter Widget of type <code>Figure</code>.</p>
-<p>
-  If you're reading this message in the Jupyter Notebook or JupyterLab Notebook, it may mean
-  that the widgets JavaScript is still loading. If this message persists, it
-  likely means that the widgets JavaScript library is either not installed or
-  not enabled. See the <a href="https://ipywidgets.readthedocs.io/en/stable/user_install.html">Jupyter
-  Widgets Documentation</a> for setup instructions.
-</p>
-<p>
-  If you're reading this message in another frontend (for example, a static
-  rendering on GitHub or <a href="https://nbviewer.jupyter.org/">NBViewer</a>),
-  it may mean that your frontend doesn't currently support widgets.
-</p>
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<center>
+<img src="/images/map.png">
+</img></center>
 </div>
 </div>
 </div>
