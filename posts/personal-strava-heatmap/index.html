@@ -1101,7 +1101,7 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In [1]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
@@ -1115,7 +1115,7 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [12]:</div>
+<div class="prompt input_prompt">In [2]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">gpx_files</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">'../images/activities'</span><span class="p">)</span>
@@ -1135,7 +1135,7 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [13]:</div>
+<div class="prompt input_prompt">In [3]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">coords_df</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1174,11 +1174,40 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [17]:</div>
+<div class="prompt input_prompt">In [7]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">runningheatmap</span> <span class="o">=</span> <span class="n">heatcoords_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'Altitude'</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Total number of GPS coordinates my watch recorded in the year 2017</strong></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [8]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">runningheatmap</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>244930</pre>
+</div>
 </div>
 </div>
 </div>
@@ -1200,7 +1229,7 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [19]:</div>
+<div class="prompt input_prompt">In [10]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">gmaps</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">zoom_level</span> <span class="o">=</span> <span class="mi">11</span><span class="p">,</span> <span class="n">center</span> <span class="o">=</span> <span class="p">(</span><span class="mf">40.014984</span><span class="p">,</span> <span class="o">-</span><span class="mf">105.270546</span><span class="p">))</span>
@@ -1219,8 +1248,8 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Calling <code>fig</code> here spits out a sweet heatmap..</strong></p>
-<p>Its zoomable, clickable, pan-able, ..colors rescale as needed for visibility, etc. But the widget, which <em>does</em> embed nicely into the Jupyer notebook, unfortunately doesn't make the cut for my (mostly) static site. Alas, a screenshot will have to do:</p>
+<p><strong>Calling <code>fig</code> here spits out a heatmap..</strong></p>
+<p>Its zoomable, clickable, pan-able, ..colors rescale as needed for visibility, etc. Its a big file, of course, so I linked to it <strong><a href="../../images/heatwidget.html">HERE</a></strong>. Below is a screenshot.</p>
 </div>
 </div>
 </div>
@@ -1248,16 +1277,14 @@ h6:hover .anchor-link {
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># <center></span>
-<span class="c1"># <img src="/images/map.png"></span>
-<span class="c1"># </center></span>
-</pre></div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<center>
+<img src="/images/map.png">
+</img></center>
 </div>
 </div>
 </div>
@@ -1272,26 +1299,6 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><a href="'/images/heatwidget.html'">heatwidget</a></p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
