@@ -1077,29 +1077,30 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<pre><code>    <trk>
-      <name>In the Park, w/ GK and Rach</name>
-      <trkseg>
-       <trkpt lat="43.0569910" lon="-73.8009940">
-        <ele>93.2</ele>
-        <time>2017-01-02T17:41:52Z</time>
-        <extensions>
-         <gpxtpx:trackpointextension>
-          <gpxtpx:cad>0</gpxtpx:cad>
-         </gpxtpx:trackpointextension>
-        </extensions>
-       </trkpt>
-       <trkpt lat="43.0568540" lon="-73.8011450">
-        <ele>93.0</ele>
-        <time>2017-01-02T17:42:00Z</time>
-        <extensions>
-         <gpxtpx:trackpointextension>
-          <gpxtpx:cad>89</gpxtpx:cad>
-         </gpxtpx:trackpointextension>
-        </extensions>
-       </trkpt>
-     ...
-    <trk>
+<pre><code>:::xml
+<trk>
+    <name>In the Park, w/ GK and Rach</name>
+    <trkseg>
+        <trkpt lat="43.0569910" lon="-73.8009940">
+            <ele>93.2</ele>
+            <time>2017-01-02T17:41:52Z</time>
+            <extensions>
+                <gpxtpx:trackpointextension>
+                    <gpxtpx:cad>0</gpxtpx:cad>
+                </gpxtpx:trackpointextension>
+            </extensions>
+        </trkpt>
+        <trkpt lat="43.0568540" lon="-73.8011450">
+            <ele>93.0</ele>
+            <time>2017-01-02T17:42:00Z</time>
+            <extensions>
+                <gpxtpx:trackpointextension>
+                    <gpxtpx:cad>89</gpxtpx:cad>
+                </gpxtpx:trackpointextension>
+            </extensions>
+        </trkpt>
+        ...
+<trk>
 </code></pre>
 <p>Its basically just XML. I'll let you figure out what <code>lat</code>, <code>lon</code>, <code>ele</code>, and <code>cad</code> stand for. More sophisticated watches than my Garmin 220 might have more data fields, but this is already enough to play with for now! We'll use the nifty <a href="https://github.com/tkrajina/gpxpy/blob/master/README.md">gpxpy</a> package to parse the XML, and then use <a href="https://github.com/pbugnion/gmaps">gmaps</a> to make ourselves a heatmap.</p>
 </div>
