@@ -1067,7 +1067,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Your 'personal' heatmap.  Its a Strava Premium feature (I think?) But it also provided me some inspiration to try to do it myself! You can bulk download all the activities you've ever uploaded to Strava, from Strava, be going to your 'settings' page, bottom right hand side of page, and clicking 'Download All Activities'. You'll get a download link by email, its active for 48 hours. Click it, and you get a zip archive of GPX files. These are the files that get 'synched' from your watch --> phone --> Garmin Connect app --> Strava.</p>
+<p>Your 'personal' heatmap.  Its a Strava Premium feature (I think?), but it also provided me some inspiration to try to do it myself. You can bulk download all the activities you've ever uploaded to Strava, from Strava, by going to your Strave profile 'settings' page, scrolling down to the bottom right hand side of the page, and clicking 'Download All Activities'. You'll get a download link by email, its active for 48 hours. Click it, and you get a zip archive of GPX files. These are the files that get 'synched' from your watch --> phone --> Garmin Connect app --> Strava.</p>
 <p><strong>Taking a look at one of my GPX files, the raw file looks like this:</strong></p>
 </div>
 </div>
@@ -1086,7 +1086,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Its basically just XML. I'll let you figure out what <code>lat</code>, <code>lon</code>, <code>ele</code>, and <code>cad</code> stand for. More sophisticated watches than my Garmin 220 might have more data fields, but this is already enough to play with for now! We'll use the nifty <a href="https://github.com/tkrajina/gpxpy/blob/master/README.md">gpxpy</a> package to parse the XML, and then use <a href="https://github.com/pbugnion/gmaps">gmaps</a> to make ourselves a heatmap.</p>
+<p>Its basically just XML. I'll let you figure out what <code>lat</code>, <code>lon</code>, <code>ele</code>, and <code>cad</code> stand for. More sophisticated watches than my Garmin 220 might have more data fields, but this is already enough to play with for now. We'll use the nifty <a href="https://github.com/tkrajina/gpxpy/blob/master/README.md">gpxpy</a> package to parse the XML, and then use <a href="https://github.com/pbugnion/gmaps">gmaps</a> to make ourselves a heatmap.</p>
 </div>
 </div>
 </div>
@@ -1174,7 +1174,7 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In [4]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">runningheatmap</span> <span class="o">=</span> <span class="n">heatcoords_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'Altitude'</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
@@ -1194,7 +1194,7 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In [5]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">runningheatmap</span><span class="p">)</span>
@@ -1204,7 +1204,7 @@ h6:hover .anchor-link {
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>244930</pre>
 </div>
@@ -1229,7 +1229,7 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [10]:</div>
+<div class="prompt input_prompt">In [7]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">gmaps</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">zoom_level</span> <span class="o">=</span> <span class="mi">11</span><span class="p">,</span> <span class="n">center</span> <span class="o">=</span> <span class="p">(</span><span class="mf">40.014984</span><span class="p">,</span> <span class="o">-</span><span class="mf">105.270546</span><span class="p">))</span>
@@ -1249,33 +1249,12 @@ h6:hover .anchor-link {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Calling <code>fig</code> here spits out a heatmap..</strong></p>
-<p>Its zoomable, clickable, pan-able, ..colors rescale as needed for visibility, etc. Its a big file, of course, so I linked to it <strong><a href="../../images/heatwidget.html">HERE</a></strong>. Below is a screenshot.</p>
+<p>Its zoomable, clickable, pan-able, ..colors rescale as needed for visibility, etc. Its a big file, of course, so patience grasshopper, when you click <strong><a href="../../images/heatwidget.html">this link</a></strong>. If you're on a slow connection, you'll have to settle for the below not-nearly-as-fun screenshot:</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area"><div class="prompt"></div>
-<div class="output_html rendered_html output_subarea ">
-<p>Failed to display Jupyter Widget of type <code>Figure</code>.</p>
-<p>
-  If you're reading this message in the Jupyter Notebook or JupyterLab Notebook, it may mean
-  that the widgets JavaScript is still loading. If this message persists, it
-  likely means that the widgets JavaScript library is either not installed or
-  not enabled. See the <a href="https://ipywidgets.readthedocs.io/en/stable/user_install.html">Jupyter
-  Widgets Documentation</a> for setup instructions.
-</p>
-<p>
-  If you're reading this message in another frontend (for example, a static
-  rendering on GitHub or <a href="https://nbviewer.jupyter.org/">NBViewer</a>),
-  it may mean that your frontend doesn't currently support widgets.
-</p>
-</div>
-</div>
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
