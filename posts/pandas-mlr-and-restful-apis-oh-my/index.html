@@ -1066,7 +1066,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Munge,-Plot,-Verify-Data">Munge, Plot, Verify Data<a class="anchor-link" href="#Munge,-Plot,-Verify-Data">¶</a></h1><p>We start by importing the data, which were downloaded as multiple different <em>.csv</em> files from the business's financial management system. We import the data into pandas dataframes:</p>
+<h2 id="Munge,-Plot,-Verify-Data">Munge, Plot, Verify Data<a class="anchor-link" href="#Munge,-Plot,-Verify-Data">¶</a></h2><p>We start by importing the data, which were downloaded as multiple different <em>.csv</em> files from the business's financial management system. We import the data into pandas dataframes:</p>
 </div>
 </div>
 </div>
@@ -1811,7 +1811,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Multiple-Linear-Regression-(MLR)-with-statsmodels">Multiple Linear Regression (MLR) with statsmodels<a class="anchor-link" href="#Multiple-Linear-Regression-(MLR)-with-statsmodels">¶</a></h1><p>y = $\sum_{n}c_nx_n$ = $c_1$x$_1$ + $c_2$x$_2$ + $c_3$x$_3$ + ... + $c_n$x$_n$ + $\epsilon$</p>
+<h2 id="Multiple-Linear-Regression-(MLR)-with-statsmodels">Multiple Linear Regression (MLR) with statsmodels<a class="anchor-link" href="#Multiple-Linear-Regression-(MLR)-with-statsmodels">¶</a></h2><p>y = $\sum_{n}c_nx_n$ = $c_1$x$_1$ + $c_2$x$_2$ + $c_3$x$_3$ + ... + $c_n$x$_n$ + $\epsilon$</p>
 <p>where:</p>
 <ul>
 <li>y = dependent variable (ie. 'net profit'), predicted variable. </li>
@@ -1891,7 +1891,7 @@ Warnings:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Visualize-each-parameter's-relationship-to-net_total">Visualize each parameter's relationship to <code>net_total</code><a class="anchor-link" href="#Visualize-each-parameter's-relationship-to-net_total">¶</a></h1>
+<h2 id="Visualize-each-parameter's-relationship-to-net_total">Visualize each parameter's relationship to <code>net_total</code><a class="anchor-link" href="#Visualize-each-parameter's-relationship-to-net_total">¶</a></h2>
 </div>
 </div>
 </div>
@@ -1932,21 +1932,37 @@ Warnings:
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Harvest-tweets-with-Twitter's-API">Harvest tweets with Twitter's API<a class="anchor-link" href="#Harvest-tweets-with-Twitter's-API">¶</a></h1><p>I set up a dev account with twitter to programmatically query the "Full Archive" (which goes back to ~2006). I used a "Sandbox" environment, which has rate and query limits. Fun to play, at least..</p>
+<h2 id="Harvest-tweets-with-Twitter's-API">Harvest tweets with Twitter's API<a class="anchor-link" href="#Harvest-tweets-with-Twitter's-API">¶</a></h2><p>I set up a dev account with twitter to programmatically query the "Full Archive" (which goes back to ~2006). I used a "Sandbox" environment, which has rate and query limits. Fun to play, at least..</p>
 <p>Twitter's API is OAuth protected, so after setting up your dev account, you have to authenticate by passing in your consumer key and secret. Details in the links below:</p>
 <ul>
 <li><a href="https://developer.twitter.com/en.html">Dev site</a></li>
 <li><a href="https://developer.twitter.com/en/docs/basics/response-codes">Twitter Response Codes</a></li>
 <li><a href="https://developer.twitter.com/en/docs/tweets/search/api-reference/premium-search">Search API reference</a></li>
 </ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [16]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">client_key</span> <span class="o">=</span> <span class="s1">'XXXXXXXXXXXXXXXXXXXXXXXXXX'</span>
+<span class="n">client_secret</span> <span class="o">=</span> <span class="s1">'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'</span>
+<span class="c1"># OAUTH_TOKEN= 'XXXXXXXXX-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'</span>
+<span class="c1"># OAUTH_TOKEN_SECRET= 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+
+<span class="n">key_secret</span> <span class="o">=</span> <span class="s1">'{}:{}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">client_key</span><span class="p">,</span> <span class="n">client_secret</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'ascii'</span><span class="p">)</span>
+<span class="n">b64_encoded_key</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">key_secret</span><span class="p">)</span>
+<span class="n">b64_encoded_key</span> <span class="o">=</span> <span class="n">b64_encoded_key</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">'ascii'</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -2064,7 +2080,8 @@ Warnings:
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">for</span> <span class="n">tweet</span> <span class="ow">in</span> <span class="n">tweets</span><span class="p">:</span>
-    <span class="k">print</span> <span class="n">tweets</span><span class="p">[</span><span class="s1">'date'</span><span class="p">]</span> <span class="o">+</span> <span class="s1">'-'</span> <span class="o">+</span> <span class="n">tweets</span><span class="p">[</span><span class="s1">'user'</span><span class="p">][</span><span class="s1">'screen_name'</span><span class="p">]</span> <span class="o">+</span> <span class="s1">': '</span> <span class="o">+</span> <span class="n">tweets</span><span class="p">[</span><span class="s1">'text'</span><span class="p">]</span> <span class="o">+</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span> <span class="o">+</span> <span class="s1">'__________________________________________________________________________________________________________________________'</span>
+    <span class="k">print</span> <span class="n">tweets</span><span class="p">[</span><span class="s1">'date'</span><span class="p">]</span> <span class="o">+</span> <span class="s1">'-'</span> <span class="o">+</span> <span class="n">tweets</span><span class="p">[</span><span class="s1">'user'</span><span class="p">][</span><span class="s1">'screen_name'</span><span class="p">]</span> <span class="o">+</span> <span class="s1">': '</span> <span class="o">+</span> <span class="n">tweets</span><span class="p">[</span><span class="s1">'text'</span><span class="p">]</span> <span class="o">+</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span> <span class="o">+</span>
+    <span class="s1">'_________________________________________________________________________________________'</span>
 </pre></div>
 </div>
 </div>
