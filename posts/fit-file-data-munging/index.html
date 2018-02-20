@@ -24,11 +24,11 @@
 
 
 <meta name="author" content="Devin Rourke" />
-<meta name="description" content="coolest unit yet: the semicircle!" />
+<meta name="description" content="new coolest unit: the semicircle." />
 <meta name="keywords" content="python, data, running">
 <meta property="og:site_name" content="devinrourke"/>
-<meta property="og:title" content=".FIT file data munging"/>
-<meta property="og:description" content="coolest unit yet: the semicircle!"/>
+<meta property="og:title" content=".fit file data munging"/>
+<meta property="og:description" content="new coolest unit: the semicircle."/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="https://devinrourke.github.io/posts/fit-file-data-munging/"/>
 <meta property="og:type" content="article"/>
@@ -41,7 +41,7 @@
 <meta property="article:tag" content="running"/>
 <meta property="og:image" content="">
 
-  <title>devinrourke &ndash; .FIT file data munging</title>
+  <title>devinrourke &ndash; .fit file data munging</title>
 
 </head>
 <body>
@@ -80,7 +80,7 @@
 
 <article class="single">
   <header>
-    <h1 id="fit-file-data-munging">.FIT file data munging</h1>
+    <h1 id="fit-file-data-munging">.fit file data munging</h1>
     <p>
           Posted on Mon 19 February 2018 in <a href="https://devinrourke.github.io/category/projects.html">Projects</a>
 
@@ -1067,7 +1067,13 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id=".FIT-file-parsing,-data-munging">.FIT file parsing, data munging<a class="anchor-link" href="#.FIT-file-parsing,-data-munging">¶</a></h1>
+<p>New coolest unit: <strong>semicircles!</strong></p>
+<ul>
+<li>Conversion:  <strong>semicircles = degrees / ( 2^31 / 180 )</strong></li>
+<li>32-bit unsigned integer represents full 360 deg of longitude </li>
+<li>maximum precision from 32 bits (~double that of floating point), and integer arithmetic</li>
+</ul>
+<p>details: <a href="https://msdn.microsoft.com/en-us/library/cc510650.aspx">https://msdn.microsoft.com/en-us/library/cc510650.aspx</a></p>
 </div>
 </div>
 </div>
@@ -1076,13 +1082,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>New coolest unit: <strong>semicircles!</strong></p>
-<ul>
-<li>Conversion:  <strong>semicircles = degrees / ( 2^31 / 180 )</strong></li>
-<li>32-bit unsigned integer represents full 360 deg of longitude </li>
-<li>maximum precision from 32 bits (~double that of floating point), and integer arithmetic</li>
-</ul>
-<p>details: <a href="https://msdn.microsoft.com/en-us/library/cc510650.aspx">https://msdn.microsoft.com/en-us/library/cc510650.aspx</a></p>
+<h1 id=".fit-file-parsing,-data-munging">.fit file parsing, data munging<a class="anchor-link" href="#.fit-file-parsing,-data-munging">¶</a></h1>
 </div>
 </div>
 </div>
@@ -1122,7 +1122,7 @@ h6:hover .anchor-link {
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">fitfile</span> <span class="o">=</span> <span class="n">FitFile</span><span class="p">(</span><span class="s1">'2363427903.fit'</span><span class="p">)</span>
-<span class="n">fitfile</span><span class="o">.</span><span class="n">messages</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+<span class="nb">str</span><span class="p">(</span><span class="n">fitfile</span><span class="o">.</span><span class="n">messages</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1131,11 +1131,7 @@ h6:hover .anchor-link {
 <div class="output">
 <div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>[<datamessage: file_id (#0) -- local mesg: #0, fields: [serial_number: 3875181366, time_created: 2017-12-03 15:00:06, manufacturer: garmin, garmin_product: fr220, number: none, type: activity]>,
- <datamessage: file_creator (#49) -- local mesg: #1, fields: [software_version: 310, hardware_version: none]>,
- <datamessage: event (#21) -- local mesg: #2, fields: [timestamp: 2017-12-03 15:00:06, timer_trigger: manual, event: timer, event_type: start, event_group: 0]>,
- <datamessage: device_info (#23) -- local mesg: #3, fields: [timestamp: 2017-12-03 15:00:06, serial_number: 3875181366, cum_operating_time: none, unknown_8: none, unknown_15: none, unknown_16: none, manufacturer: garmin, garmin_product: fr220, software_version: 3.1, battery_voltage: none, ant_device_number: none, device_index: creator, device_type: none, hardware_version: none, unknown_9: none, battery_status: none, ant_transmission_type: none, ant_network: none, unknown_23: none, source_type: local]>,
- <datamessage: device_info (#23) -- local mesg: #3, fields: [timestamp: 2017-12-03 15:00:06, serial_number: none, cum_operating_time: none, unknown_8: none, unknown_15: none, unknown_16: none, manufacturer: garmin, garmin_product: 1689, software_version: 3.5, battery_voltage: none, ant_device_number: none, device_index: 1, device_type: 0, hardware_version: none, unknown_9: none, battery_status: none, ant_transmission_type: none, ant_network: none, unknown_23: none, source_type: local]>]</pre>
+<pre>'[<datamessage: file_id (#0) -- local mesg: #0, fields: [serial_number: 3875181366, time_created: 2017-12-03 15:00:06, manufacturer: garmin, garmin_product: fr220, number: none, type: activity]>, <datamessage: file_creator (#49) -- local mesg: #1, fields: [software_version: 310, hardware_version: none]>, <datamessage: event (#21) -- local mesg: #2, fields: [timestamp: 2017-12-03 15:00:06, timer_trigger: manual, event: timer, event_type: start, event_group: 0]>, <datamessage: device_info (#23) -- local mesg: #3, fields: [timestamp: 2017-12-03 15:00:06, serial_number: 3875181366, cum_operating_time: none, unknown_8: none, unknown_15: none, unknown_16: none, manufacturer: garmin, garmin_product: fr220, software_version: 3.1, battery_voltage: none, ant_device_number: none, device_index: creator, device_type: none, hardware_version: none, unknown_9: none, battery_status: none, ant_transmission_type: none, ant_network: none, unknown_23: none, source_type: local]>, <datamessage: device_info (#23) -- local mesg: #3, fields: [timestamp: 2017-12-03 15:00:06, serial_number: none, cum_operating_time: none, unknown_8: none, unknown_15: none, unknown_16: none, manufacturer: garmin, garmin_product: 1689, software_version: 3.5, battery_voltage: none, ant_device_number: none, device_index: 1, device_type: 0, hardware_version: none, unknown_9: none, battery_status: none, ant_transmission_type: none, ant_network: none, unknown_23: none, source_type: local]>]'</pre>
 </div>
 </div>
 </div>
@@ -1354,12 +1350,18 @@ h6:hover .anchor-link {
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Plot-stuff">Plot stuff<a class="anchor-link" href="#Plot-stuff">¶</a></h1>
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In [7]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
@@ -1376,9 +1378,9 @@ h6:hover .anchor-link {
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre><matplotlib.legend.legend at 0xbcfa940></pre>
+<pre><matplotlib.legend.legend at 0xbd17a58></pre>
 </div>
 </div>
 <div class="output_area"><div class="prompt"></div>
@@ -1392,7 +1394,7 @@ h6:hover .anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In [8]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
@@ -1416,9 +1418,21 @@ h6:hover .anchor-link {
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="That-projection-sucks-(its-raw-lat,-lon).">That projection sucks (its raw lat, lon).<a class="anchor-link" href="#That-projection-sucks-(its-raw-lat,-lon).">¶</a></h1><h2 id="So,-use-gmaps,-or-your-fav-mapper..">So, use gmaps, or your fav mapper..<a class="anchor-link" href="#So,-use-gmaps,-or-your-fav-mapper..">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In [10]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">gmaps</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>  <span class="c1"># zoom_level=2</span>
