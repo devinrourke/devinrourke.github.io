@@ -1122,7 +1122,7 @@ h6:hover .anchor-link {
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">fitfile</span> <span class="o">=</span> <span class="n">FitFile</span><span class="p">(</span><span class="s1">'2363427903.fit'</span><span class="p">)</span>
-<span class="nb">str</span><span class="p">(</span><span class="n">fitfile</span><span class="o">.</span><span class="n">messages</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">fitfile</span><span class="o">.</span><span class="n">messages</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>  <span class="c1"># I don't know why this doesn't print to the console, so below is a screenshot..</span>
 </pre></div>
 </div>
 </div>
@@ -1131,9 +1131,24 @@ h6:hover .anchor-link {
 <div class="output">
 <div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>'[<datamessage: file_id (#0) -- local mesg: #0, fields: [serial_number: 3875181366, time_created: 2017-12-03 15:00:06, manufacturer: garmin, garmin_product: fr220, number: none, type: activity]>, <datamessage: file_creator (#49) -- local mesg: #1, fields: [software_version: 310, hardware_version: none]>, <datamessage: event (#21) -- local mesg: #2, fields: [timestamp: 2017-12-03 15:00:06, timer_trigger: manual, event: timer, event_type: start, event_group: 0]>, <datamessage: device_info (#23) -- local mesg: #3, fields: [timestamp: 2017-12-03 15:00:06, serial_number: 3875181366, cum_operating_time: none, unknown_8: none, unknown_15: none, unknown_16: none, manufacturer: garmin, garmin_product: fr220, software_version: 3.1, battery_voltage: none, ant_device_number: none, device_index: creator, device_type: none, hardware_version: none, unknown_9: none, battery_status: none, ant_transmission_type: none, ant_network: none, unknown_23: none, source_type: local]>, <datamessage: device_info (#23) -- local mesg: #3, fields: [timestamp: 2017-12-03 15:00:06, serial_number: none, cum_operating_time: none, unknown_8: none, unknown_15: none, unknown_16: none, manufacturer: garmin, garmin_product: 1689, software_version: 3.5, battery_voltage: none, ant_device_number: none, device_index: 1, device_type: 0, hardware_version: none, unknown_9: none, battery_status: none, ant_transmission_type: none, ant_network: none, unknown_23: none, source_type: local]>]'</pre>
+<pre>[<datamessage: file_id (#0) -- local mesg: #0, fields: [serial_number: 3875181366, time_created: 2017-12-03 15:00:06, manufacturer: garmin, garmin_product: fr220, number: none, type: activity]>,
+ <datamessage: file_creator (#49) -- local mesg: #1, fields: [software_version: 310, hardware_version: none]>,
+ <datamessage: event (#21) -- local mesg: #2, fields: [timestamp: 2017-12-03 15:00:06, timer_trigger: manual, event: timer, event_type: start, event_group: 0]>,
+ <datamessage: device_info (#23) -- local mesg: #3, fields: [timestamp: 2017-12-03 15:00:06, serial_number: 3875181366, cum_operating_time: none, unknown_8: none, unknown_15: none, unknown_16: none, manufacturer: garmin, garmin_product: fr220, software_version: 3.1, battery_voltage: none, ant_device_number: none, device_index: creator, device_type: none, hardware_version: none, unknown_9: none, battery_status: none, ant_transmission_type: none, ant_network: none, unknown_23: none, source_type: local]>,
+ <datamessage: device_info (#23) -- local mesg: #3, fields: [timestamp: 2017-12-03 15:00:06, serial_number: none, cum_operating_time: none, unknown_8: none, unknown_15: none, unknown_16: none, manufacturer: garmin, garmin_product: 1689, software_version: 3.5, battery_voltage: none, ant_device_number: none, device_index: 1, device_type: 0, hardware_version: none, unknown_9: none, battery_status: none, ant_transmission_type: none, ant_network: none, unknown_23: none, source_type: local]>]</pre>
 </div>
 </div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<center>
+<img src="/images/fitmsg.png">
+</img></center>
 </div>
 </div>
 </div>
@@ -1380,7 +1395,7 @@ h6:hover .anchor-link {
 <div class="output">
 <div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre><matplotlib.legend.legend at 0xbd17a58></pre>
+<pre><matplotlib.legend.legend at 0xbc8c940></pre>
 </div>
 </div>
 <div class="output_area"><div class="prompt"></div>
@@ -1428,7 +1443,15 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-
+<div class="input">
+<div class="prompt input_prompt">In [9]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">gmaps</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s2">"AIzaSyCWGmXSL75gi_IMA3ViVRQ_597I4Gtn7VE"</span><span class="p">)</span> <span class="c1"># Your Google API key</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
