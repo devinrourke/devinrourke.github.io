@@ -2012,20 +2012,6 @@ Warnings:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [19]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">merge_dicts</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-    <span class="n">z</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">z</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">z</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
 <div class="prompt input_prompt">In [20]:</div>
 <div class="inner_cell">
 <div class="input_area">
@@ -2055,7 +2041,7 @@ Warnings:
         <span class="k">print</span> <span class="n">search_resp</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'next'</span><span class="p">]</span>
 
         <span class="n">add_tweets</span> <span class="o">=</span> <span class="n">search_resp</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'results'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">tweets</span> <span class="o">=</span> <span class="n">merge_dicts</span><span class="p">(</span><span class="n">tweets</span><span class="p">,</span> <span class="n">add_tweets</span><span class="p">)</span>
+        <span class="n">tweets</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">tweets</span><span class="p">,</span> <span class="o">**</span><span class="n">add_tweets</span><span class="p">)</span>
         
     <span class="k">return</span> <span class="n">tweets</span>
 </pre></div>
