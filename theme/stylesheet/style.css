@@ -292,23 +292,6 @@ main article .comment-count {
     font-size: .8em
 }
 
-main article table {
-    border-collapse: collapse;
-    border-spacing: 0
-}
-
-main article table thead:first-child tr:first-child th {
-    border-top: 0
-}
-
-main article table td,
-main article table th {
-    padding: 8px;
-    line-height: 20px;
-    vertical-align: top;
-    border-top: 1px solid #ddd
-}
-
 main footer {
     padding-top: 4px;
     border-top: 1px solid #eee
