@@ -180,9 +180,10 @@ main .pagination {
     height: 20px
 }
 
-main article header {
+main {
     margin-left: 20px
 }
+
 
 main article div .input_area {
     overflow-x: auto;
