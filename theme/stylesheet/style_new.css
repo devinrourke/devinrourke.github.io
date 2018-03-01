@@ -116,6 +116,10 @@ main {
     padding: 3%
 }
 
+main p {
+    font-size: 12pt
+}
+
 main footer p {
     margin: 20px;
     text-align: center;
