@@ -10,10 +10,6 @@ main p {
 /*     font-size: 12pt */
 }
 
-.input_area {
-    overflow-x: scroll;
-}
-
 a {
     color: #0b75ed;
     text-decoration: none
