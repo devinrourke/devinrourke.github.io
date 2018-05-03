@@ -1065,6 +1065,34 @@ h6:hover .anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Baydin,-Pearlmutter,-Radul,-and-Siskind">Baydin, Pearlmutter, Radul, and Siskind<a class="anchor-link" href="#Baydin,-Pearlmutter,-Radul,-and-Siskind">¶</a></h2><p><strong>Automatic differentiation in machine learning: a survey</strong><br>
 <a href="https://arxiv.org/abs/1502.05767">https://arxiv.org/abs/1502.05767</a></br></p>
+<ul>
+<li><p>AD is not numeric differentiation: $\frac{\partial f(x)}{\partial x_i}\approx \frac{f(x+he_i)-f(x)}{h}$</p>
+<ul>
+<li>subject to numerical instabilities.</li>
+<li><em>thou shalt not add small numbers to big numbers</em></li>
+<li><em>thou shalt not subtract numbers which are approximately equal</em></li>
+<li>truncation errors (ala dissertation)</li>
+<li>$\mathcal{O}(n)$ complexity for gradient in n dimensions is the main challenge of numerical approaches, since n can be millions and billions.</li>
+</ul>
+</li>
+<li><p>AD is not symbolic differentiation, ie. chain rule/ mathematica: $\frac{d}{dx}(f(x)+g(x))=\frac{d}{dx}f(x)+\frac{d}{dx}g(x)$</p>
+<ul>
+<li>machanistic, carried out by Mathematica/SymPy symbol manipulation rules</li>
+<li>calculation of symbolic derivatives can get exponentially larger in complexity than the original expression. Basic example: chain rule.</li>
+</ul>
+</li>
+<li><p>AD fwd and backprop</p>
+<ul>
+<li>apply symbolic differentiation at the elementary operation level and keep intermediate numerical results in lockstep with the evaluation of the main function.</li>
+<li><em>differentiate the analytic equation, then plug in numbers. repeat.</em></li>
+<li>intermediate variables $\dot v_i$ assiciated with a derivative $\frac{\partial v_i}{\partial x_1}$</li>
+<li>evaluate primals along the way with tangents, get final variable $\dot v_5=\frac{\partial y}{\partial x_1}$.</li>
+<li>Generalizes to calculating Jacobians.</li>
+<li>Backprop utilizes adjoint</li>
+</ul>
+</li>
+</ul>
+<p>Check out PyTorch for general-purpose AD and <em>define-by-run</em> or <em>dynamic computational graph</em>, where model is all in python and exacuation dynamically constructs a computational graph on-the-fly which can freely change in each iteration (as opposed to TensorFlow, which is apparently static?) and which uses stupid tf.while statements, etc.</p>
 </div>
 </div>
 </div>
@@ -1074,6 +1102,21 @@ h6:hover .anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Sergey-Ioffe-and-Szegedy;-Google">Sergey Ioffe and Szegedy; Google<a class="anchor-link" href="#Sergey-Ioffe-and-Szegedy;-Google">¶</a></h2><p><strong>Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift</strong><br>
 <a href="https://arxiv.org/pdf/1502.03167.pdf">https://arxiv.org/pdf/1502.03167.pdf</a></br></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Training DNNs is complicated by the fact that each layer’s inputs change during training, as the parameters of the previous layers change. This slows training (req. lower learning rates, careful parameter initialization).</li>
+<li>Therefore, notoriously hard to train noisy models (those with saturating nonlinearities).</li>
+<li>This is "internal covariate shift"</li>
+<li>Fix by <em>normalizing layer inputs</em>.</li>
+<li>Batch Normalization also acts as a regularizer, in some cases eliminating the need for Dropout.</li>
+<li></li>
+</ul>
 </div>
 </div>
 </div>
