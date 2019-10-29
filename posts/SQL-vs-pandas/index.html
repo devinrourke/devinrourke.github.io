@@ -1320,38 +1320,48 @@ h6:hover .anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>4 Operations: GET, UPDATE, INSERT, DESTROY</p>
 <p>Many Keywords, for example DELETE FROM</p>
-<p><strong>Sample GET Query</strong><br>
-<code>SELECT * FROM Customers WHERE Country = 'Germany' ORDER BY PostalCode DESC</code></p>
-<p><code>SELECT * FROM Products
+<p><strong>Sample GET Query</strong></p>
+
+<pre><code>SELECT * FROM Customers WHERE Country = 'Germany' ORDER BY PostalCode DESC</code></pre>
+
+<pre><code>SELECT * FROM Products
 WHERE Price &gt;= 50
-ORDER BY ProductName DESC;</code></p>
-<p><strong>Sample UPDATE Query</strong><br>
-<code>UPDATE (table name)
+ORDER BY ProductName DESC;</code></pre>
+<p><strong>Sample UPDATE Query</strong></p>
+
+<pre><code>UPDATE (table name)
 SET (column name) = (value)
-WHERE (column name) = (value)</code></p>
-<p>ex.<br>
-<code>UPDATE Products
+WHERE (column name) = (value)</code></pre>
+<p>ex.</p>
+
+<pre><code>UPDATE Products
 SET Unit = '16 lb pkgs.'
-WHERE ProductID = 18</code></p>
-<p><code>UPDATE OrderDetails
+WHERE ProductID = 18</code></pre>
+
+<pre><code>UPDATE OrderDetails
 SET Quantity = 12
-WHERE OrderID = 10248</code></p>
+WHERE OrderID = 10248</code></pre>
 <p>^ OrderID isn't native to OrderDetails table</p>
-<p><strong>Sample INSERT Query</strong><br>
-<code>INSERT INTO (table name)
+<p><strong>Sample INSERT Query</strong></p>
+
+<pre><code>INSERT INTO (table name)
 (column 1 name), (column 2 name), (column 3 name)
-VALUES (value 1, value 2, value 3)</code></p>
-<p><code>INSERT INTO OrderDetails
+VALUES (value 1, value 2, value 3)</code></pre>
+
+<pre><code>INSERT INTO OrderDetails
 (OrderID, ProductID, Quantity)
 VALUES
 (1,2,3),  
-(4,5,6)</code>   &lt;--- add a 2nd row<br>
+(4,5,6)</code></pre>
+<p>^ add a 2nd row<br>
 ^ database auto-increments native ID</p>
-<p><strong>Sample DESTROY Query</strong><br>
-<code>DELETE FROM (table name)
-WHERE (condition)</code></p>
-<p><code>DELETE FROM OrderDetails
-WHERE OrderID = 10248</code></p>
+<p><strong>Sample DESTROY Query</strong></p>
+
+<pre><code>DELETE FROM (table name)
+WHERE (condition)</code></pre>
+
+<pre><code>DELETE FROM OrderDetails
+WHERE OrderID = 10248</code></pre>
 <p>^ (must delete entire row)<br>
 ^ (table does not update all IDs to fill gaps)<br>
 ^ (foreign keys don't get deleted)</p>
@@ -1368,7 +1378,43 @@ WHERE OrderID = 10248</code></p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Joins">Joins<a class="anchor-link" href="#Joins">&#182;</a></h2><p>(same or similar to pandas merges)</p>
-<p><img src="https://4.bp.blogspot.com/-_HsHikmChBI/VmQGJjLKgyI/AAAAAAAAEPw/JaLnV0bsbEo/s1600/sql%2Bjoins%2Bguide%2Band%2Bsyntax.jpg" alt="sql joins"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Sample INNER Join</strong>
+(merge related tables at a shared column into a single table)</p>
+
+<pre><code>SELECT Orders.OrderID, Customers.CustomerName
+FROM Orders
+INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID</code></pre>
+<p><strong>Sample LEFT Join</strong>
+(return all rows from left table, and matching records from the right table)
+This returns all customers and any OrderIDs that may by associated. If that customer didn't have an OrderID, <em>null</em> is inserted for OrderID</p>
+
+<pre><code>SELECT Customers.CustomerName, Orders.OrderID
+FROM Customers
+LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+ORDER BY Customers.CustomerName;</code></pre>
+<p><strong>Sample RIGHT Join</strong>
+(return all rows from the right table, and matching records from the left table)
+This returns all employees and any orders they may have placed.</p>
+
+<pre><code>SELECT Orders.OrderID, Employees.LastName, Employees.FirstName
+FROM Orders
+RIGHT JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID
+ORDER BY Orders.OrderID;</code></pre>
+<p><strong>Sample OUTER Join</strong>
+to combine all rows from one or more tables.
+no rows will be left out, all will be included in the joined tables.</p>
+
+<pre><code>SELECT Customers.CustomerName, Orders.OrderID
+FROM Customers
+FULL OUTER JOIN Orders ON Customers.CustomerID=Orders.CustomerID
+ORDER BY Customers.CustomerName;</code></pre>
 
 </div>
 </div>
