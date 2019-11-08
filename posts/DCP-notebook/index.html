@@ -1338,6 +1338,90 @@ Bonus: Can you do this in one pass?</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>First, I wanna know how much money I could have made yesterday if I'd been trading Apple stocks all day.</p>
+<p>So I grabbed Apple's stock prices from yesterday and put them in a list called stock_prices, where:</p>
+<p>The indices are the time (in minutes) past trade opening time, which was 9:30am local time.
+The values are the price (in US dollars) of one share of Apple stock at that time.
+So if the stock cost $500 at 10:30am, that means stock_prices[60] = 500.</p>
+<p>Write an efficient function that takes stock_prices and returns the best profit I could have made from one purchase and one sale of one share of Apple stock yesterday.</p>
+<p>For example:</p>
+
+<pre><code>stock_prices = [10, 7, 5, 8, 11, 9]
+
+get_max_profit(stock_prices)
+# Returns 6 (buying for $5 and selling for $11)</code></pre>
+<p>No "shorting"—you need to buy before you can sell. Also, you can't buy and sell in the same time step—at least 1 minute has to pass.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">stock_prices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">get_max_profit</span><span class="p">(</span><span class="n">stock_prices</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">stock_prices</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span> <span class="p">(</span><span class="s1">&#39;need at least 2 prices!&#39;</span><span class="p">)</span>
+     
+    <span class="c1"># greedy, O^n</span>
+    <span class="n">min_price</span> <span class="o">=</span> <span class="n">stock_prices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">max_profit</span> <span class="o">=</span> <span class="n">stock_prices</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">stock_prices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="k">for</span> <span class="n">current_time</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">stock_prices</span><span class="p">)):</span>
+        <span class="n">current_profit</span> <span class="o">=</span> <span class="n">stock_prices</span><span class="p">[</span><span class="n">current_time</span><span class="p">]</span> <span class="o">-</span> <span class="n">min_price</span>
+        <span class="n">max_profit</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_profit</span><span class="p">,</span> <span class="n">current_profit</span><span class="p">)</span>
+        <span class="n">min_price</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">min_price</span><span class="p">,</span> <span class="n">stock_prices</span><span class="p">[</span><span class="n">current_time</span><span class="p">])</span>    
+    <span class="k">return</span><span class="p">(</span><span class="n">max_profit</span><span class="p">)</span>
+
+<span class="n">get_max_profit</span><span class="p">(</span><span class="n">stock_prices</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[23]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>6</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h6 id="Greedy:">Greedy:<a class="anchor-link" href="#Greedy:">&#182;</a></h6><p>Suppose we could come up with the answer in one pass through the input, by simply updating the <strong>'best answer so far'</strong> as we went. What <strong>additional values</strong> would we need to keep updated as we looked at each item in our input, in order to be able to update the <strong>'best answer so far'</strong> in constant time?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="DCP-#3">DCP #3<a class="anchor-link" href="#DCP-#3">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 
 </div>
 </div>
