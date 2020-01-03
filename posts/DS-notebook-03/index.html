@@ -1329,7 +1329,7 @@ Name: name, dtype: object</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[163]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -9554,7 +9554,7 @@ Name: (Bob, HR), dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[200]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pop</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/state-population.csv&#39;</span><span class="p">)</span>
@@ -9569,7 +9569,7 @@ Name: (Bob, HR), dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[202]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pop</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -9585,7 +9585,7 @@ Name: (Bob, HR), dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[202]:</div>
+    <div class="prompt output_prompt">Out[3]:</div>
 
 
 
@@ -9663,7 +9663,7 @@ Name: (Bob, HR), dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[203]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">areas</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -9679,7 +9679,7 @@ Name: (Bob, HR), dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[203]:</div>
+    <div class="prompt output_prompt">Out[4]:</div>
 
 
 
@@ -9745,7 +9745,7 @@ Name: (Bob, HR), dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[204]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">abbrevs</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -9761,7 +9761,7 @@ Name: (Bob, HR), dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[204]:</div>
+    <div class="prompt output_prompt">Out[5]:</div>
 
 
 
@@ -9827,7 +9827,7 @@ Name: (Bob, HR), dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[207]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">merged</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">areas</span><span class="p">,</span> <span class="n">abbrevs</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;state&#39;</span><span class="p">)</span>
@@ -9844,7 +9844,7 @@ Name: (Bob, HR), dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[207]:</div>
+    <div class="prompt output_prompt">Out[6]:</div>
 
 
 
@@ -9916,7 +9916,7 @@ Name: (Bob, HR), dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[221]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">final</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">merged</span><span class="p">,</span> <span class="n">pop</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;abbreviation&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;state/region&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;state/region&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -9933,7 +9933,7 @@ Name: (Bob, HR), dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[221]:</div>
+    <div class="prompt output_prompt">Out[7]:</div>
 
 
 
@@ -10023,7 +10023,7 @@ Name: (Bob, HR), dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[222]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">final</span><span class="p">[</span><span class="s1">&#39;density&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">final</span><span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">final</span><span class="p">[</span><span class="s1">&#39;area (sq. mi)&#39;</span><span class="p">]</span>
@@ -10040,7 +10040,7 @@ Name: (Bob, HR), dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[222]:</div>
+    <div class="prompt output_prompt">Out[8]:</div>
 
 
 
@@ -10136,7 +10136,7 @@ Name: (Bob, HR), dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[232]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">data2010</span> <span class="o">=</span> <span class="n">final</span><span class="p">[(</span><span class="n">final</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2010</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">final</span><span class="p">[</span><span class="s1">&#39;ages&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;total&#39;</span><span class="p">)]</span>
@@ -10153,7 +10153,7 @@ Name: (Bob, HR), dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[232]:</div>
+    <div class="prompt output_prompt">Out[9]:</div>
 
 
 
@@ -10709,7 +10709,7 @@ Name: (Bob, HR), dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[234]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">data2010</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;abbreviation&#39;</span> <span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -10726,7 +10726,7 @@ Name: (Bob, HR), dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[234]:</div>
+    <div class="prompt output_prompt">Out[10]:</div>
 
 
 
@@ -10825,7 +10825,7 @@ Name: (Bob, HR), dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[235]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">data2010</span><span class="o">.</span><span class="n">density</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -10841,7 +10841,7 @@ Name: (Bob, HR), dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[235]:</div>
+    <div class="prompt output_prompt">Out[11]:</div>
 
 
 
@@ -10910,7 +10910,7 @@ Name: density, dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[242]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">merged</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()</span>
@@ -10926,7 +10926,7 @@ Name: density, dtype: float64</pre>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[242]:</div>
+    <div class="prompt output_prompt">Out[12]:</div>
 
 
 
@@ -13906,11 +13906,11 @@ we</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-
-<pre><code># call signature as of Pandas 0.18
-df.pivot_table(data, values=None, index=None, columns=None,
-                      aggfunc='mean', fill_value=None,
-                      margins=False, dropna=True, margins_name='All')</code></pre>
+<div class="highlight"><pre><span></span><span class="c1"># call signature as of Pandas 0.18</span>
+<span class="n">df</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                      <span class="n">aggfunc</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                      <span class="n">margins</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">dropna</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">margins_name</span><span class="o">=</span><span class="s1">&#39;All&#39;</span><span class="p">)</span>
+</pre></div>
 
 </div>
 </div>
@@ -15957,7 +15957,7 @@ You can check the approximate size of your array in bytes using this:</p>
 </article>
 
     <footer>
-<p>&copy; Devin Rourke 2019</p>
+<p>&copy; Devin Rourke 2020</p>
 <p></p>    </footer>
   </main>
 

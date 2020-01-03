@@ -1238,6 +1238,236 @@ h6:hover .anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="DS-[Probability,-Unfair-Coin]">DS [Probability, Unfair Coin]<a class="anchor-link" href="#DS-[Probability,-Unfair-Coin]">&#182;</a></h2><p>There is a fair coin (one side heads, one side tails) and an unfair coin (both sides tails). You pick one at random, flip it 5 times, and observe that it comes up as tails all five times. What is the chance that you are flipping the unfair coin?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>U = Unfair coin<br>
+F = Fair coin<br>
+5H = 5 tails in a row</p>
+<p>What is $P(U \mid 5H)$?</p>
+<p><strong>Bayes</strong><br>
+Given a hypothesis $H$ and evidence $E$, Bayes' theorem states that the relationship between the probability of the hypothesis before getting the evidence $P(H)$ and the probability of the hypothesis after getting the evidence $P(H \mid E)$ is:<br>
+$$
+\begin{array}{c}
+P(H \mid E) = P(E \mid H) \frac{P(E)}{P(H)}
+\end{array}
+$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Given that:<br>
+$P(H) = P(U)( = P(F)) = 0.5$<br>
+$P(E) = P(5H) = P(5H \mid U)P(U) + P(5H \mid F)P(F) = 1*0.5 + 0.5^5*0.5$</p>
+<p>then we have:
+$$
+\begin{array}{c}
+P(U \mid 5H) = \frac{P(5H \mid U)}{P(5H)}P(U) = \frac{P(5H \mid U)}{P(5H \mid U)P(U) + P(5H \mid F)P(F)}P(U) = \frac{1}{1*0.5 + 0.5^5*0.5}0.5 = 0.97
+\end{array}
+$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="DS-[Measuring-user-retention]">DS [Measuring user retention]<a class="anchor-link" href="#DS-[Measuring-user-retention]">&#182;</a></h2><p>Assume you have the below tables on user actions. Write a query to get the <strong>active user retention by month</strong>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>user_actions</strong></p>
+<table>
+<thead><tr>
+<th>column name</th>
+<th>type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user_id</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>event_id</td>
+<td>string ("sign-in", "like", "comment")</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>datetime</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the actions table, we can first define a temporary table called "mau" to get the monthly active users by month. Then we can do a self join by comparing every user_id across last month vs. this month, using the add_months() function to compare this month versus last month, as follows:</p>
+<div class="highlight"><pre><span></span><span class="k">WITH</span> <span class="n">mau</span> <span class="k">AS</span>
+    <span class="p">(</span><span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">DATE_TRUNC</span><span class="p">(</span><span class="err">‘</span><span class="k">month</span><span class="err">’</span><span class="p">,</span> <span class="k">timestamp</span><span class="p">)</span> <span class="k">AS</span> <span class="k">month</span><span class="p">,</span> <span class="n">user_id</span> <span class="k">FROM</span> <span class="n">user_actions</span><span class="p">)</span>
+<span class="k">SELECT</span>
+    <span class="n">mau</span><span class="p">.</span><span class="k">month</span><span class="p">,</span>
+    <span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">user_id</span><span class="p">)</span> <span class="k">AS</span> <span class="n">retained_users</span>
+<span class="k">FROM</span>
+    <span class="n">mau</span> <span class="n">curr_month</span>
+<span class="k">JOIN</span>
+    <span class="n">mau</span> <span class="n">last_month</span>
+<span class="k">ON</span> <span class="n">curr_month</span><span class="p">.</span><span class="k">month</span> <span class="o">=</span> <span class="n">add_months</span><span class="p">(</span><span class="n">last_month</span><span class="p">.</span><span class="k">month</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">AND</span> <span class="n">curr_month</span><span class="p">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="n">last_month</span><span class="p">.</span><span class="n">user_id</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="mi">1</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="mi">1</span> <span class="k">ASC</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="DS-[Min-of-two-uniform-random-variables]">DS [Min of two uniform random variables]<a class="anchor-link" href="#DS-[Min-of-two-uniform-random-variables]">&#182;</a></h2><p>Say we have X ~ Uniform(0, 1) and Y ~ Uniform(0, 1). What is the expected value of the minimum of X and Y?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="DS-[Sum-of-consecutive-numbers]">DS [Sum of consecutive numbers]<a class="anchor-link" href="#DS-[Sum-of-consecutive-numbers]">&#182;</a></h2><p>Given a number <code>n</code>, return the number of lists of consecutive positive integers that sum up to <code>n</code>.</p>
+<p>For example, for <code>n = 9</code>, you should return <code>3</code> since the lists are: <code>[2, 3, 4]</code>, <code>[4, 5]</code>, and <code>[9]</code>. Can you do it in linear time?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">return_num_lists_conseq_pos_int</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># always count the trivial case, [n]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">total</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+            <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="n">i</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">total</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">count</span>
+
+<span class="n">return_num_lists_conseq_pos_int</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="DS-[Fraud-detection-trade-offs]">DS [Fraud detection trade-offs]<a class="anchor-link" href="#DS-[Fraud-detection-trade-offs]">&#182;</a></h2><p>Assume we have a classifier that produces a score between 0 and 1 for the probability of a particular loan application being fraudulent. In this scenario:</p>
+<p>a) what are false positives,<br>
+b) what are false negatives, and<br>
+c) what are the trade-offs between them in terms of dollars and how should the model be weighted accordingly?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>a) <em>False positives</em>: loan applications classified with high probability of being fradulent which are actually not fraudulent.</p>
+<p>If loan amount was for X, and the interest rate was 10%, then we've lost 10% of X.</p>
+<p>b) <em>False negatives</em>: loan applications classified with low probability of being fradulent which are actually fraudulent.</p>
+<p>If loan amount was for X, we've lost X.</p>
+<p>c) <em>Trade-offs</em>:  We should penalize false negatives much more severely than false positives. In this case, if weighted by revenue, 10 false positives == 1 false nagative. So, cost should weighted 10:1 for false nagatives:false positives.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="DS-[Ranking-lists-of-shows]">DS [Ranking lists of shows]<a class="anchor-link" href="#DS-[Ranking-lists-of-shows]">&#182;</a></h2><p>How would you design a metric to compare rankings of lists of shows for a given user?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A) shows that a user is likely to play &lt;-- popularity. Optimize here and miss enjoyable shows that aren't popular.<br>
+B) shows that a user is likely to enjoy &lt;-- user's predicted rating. Optimize here and get shows that are niche/unfamiliar.</p>
+<p>Metric = A + B<br>
+Tune weights with A/B testing or ML (given enough data with positive and negative labels on the end outcome).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="DCP-#1">DCP #1<a class="anchor-link" href="#DCP-#1">&#182;</a></h2>
 </div>
 </div>
@@ -1357,10 +1587,9 @@ The values are the price (in US dollars) of one share of Apple stock at that tim
 So if the stock cost $500 at 10:30am, that means stock_prices[60] = 500.</p>
 <p>Write an efficient function that takes stock_prices and returns the best profit I could have made from one purchase and one sale of one share of Apple stock yesterday.</p>
 <p>For example:</p>
-
-<pre><code>stock_prices = [10, 7, 5, 8, 11, 9]
-
-get_max_profit(stock_prices)</code></pre>
+<div class="highlight"><pre><span></span><span class="n">stock_prices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>  
+<span class="n">get_max_profit</span><span class="p">(</span><span class="n">stock_prices</span><span class="p">)</span>
+</pre></div>
 <p>Returns 6 (buying for 5 and selling for 11)</p>
 <p>No "shorting"—you need to buy before you can sell. Also, you can't buy and sell in the same time step—at least 1 minute has to pass.</p>
 
@@ -1536,12 +1765,12 @@ and returns a sorted list of scores in less than O(n log n) time</li>
 </ul>
 <p><strong>Note:</strong> np.sort() is O(n log n)!</p>
 <p>For example:</p>
+<div class="highlight"><pre><span></span><span class="n">unsorted_scores</span> <span class="o">=</span> <span class="p">[</span><span class="mi">37</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">91</span><span class="p">,</span> <span class="mi">53</span><span class="p">]</span>
+<span class="n">HIGHEST_POSSIBLE_SCORE</span> <span class="o">=</span> <span class="mi">100</span>
 
-<pre><code>unsorted_scores = [37, 89, 41, 65, 91, 53]
-HIGHEST_POSSIBLE_SCORE = 100
-
-sort_scores(unsorted_scores, HIGHEST_POSSIBLE_SCORE)
-#Returns [91, 89, 65, 53, 41, 37]</code></pre>
+<span class="n">sort_scores</span><span class="p">(</span><span class="n">unsorted_scores</span><span class="p">,</span> <span class="n">HIGHEST_POSSIBLE_SCORE</span><span class="p">)</span>
+<span class="c1">#Returns [91, 89, 65, 53, 41, 37]</span>
+</pre></div>
 <p>We’re defining n as the number of <code>unsorted_scores</code> because we’re expecting the number of players to keep climbing.</p>
 <p>And, we'll treat <code>highest_possible_score</code> as a constant instead of factoring it into our big O time and space costs because the highest possible score isn’t going to change. Even if we do redesign the game a little, the scores will stay around the same order of magnitude.</p>
 
@@ -1787,7 +2016,7 @@ sort_scores(unsorted_scores, HIGHEST_POSSIBLE_SCORE)
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Given an array of integers, find the first missing positive integer in linear time and constant space. In other words, find the lowest positive integer that does not exist in the array. The array can contain duplicates and negative numbers as well.</p>
-<p>For example, the input [3, 4, -1, 1] should give 2. The input [1, 2, 0] should give 3.</p>
+<p>For example, the input <code>[3, 4, -1, 1]</code> should give <code>2</code>. The input <code>[1, 2, 0]</code> should give <code>3</code>.</p>
 <p>You can modify the input array in-place.</p>
 
 </div>
@@ -1862,11 +2091,11 @@ sort_scores(unsorted_scores, HIGHEST_POSSIBLE_SCORE)
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><code>cons(a, b)</code> constructs a pair, and <code>car(pair)</code> and <code>cdr(pair)</code> returns the first and last element of that pair. For example, <code>car(cons(3, 4))</code> returns <code>3</code>, and <code>cdr(cons(3, 4))</code> returns <code>4</code>.</p>
 <p>Given this implementation of <code>cons</code>:</p>
-
-<pre><code>def cons(a, b):
-    def pair(f):
-        return f(a, b)
-    return pair</code></pre>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cons</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">pair</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pair</span>
+</pre></div>
 <p>Implement <code>car</code> and <code>cdr</code>.</p>
 
 </div>
@@ -3757,16 +3986,20 @@ queue:  []
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Aside:-ACID-and-BASE-databases">Aside: ACID and BASE databases<a class="anchor-link" href="#Aside:-ACID-and-BASE-databases">&#182;</a></h3><p>SQL characteristics:
-A- Atomicity<br>
-C- Consistency<br>
-I- Isolation<br>
-D- Durability</p>
-<p>NoSQL (Wild West, anything not SQL..):
-B-<br>
-A- ^ Basically available<br>
-S- Soft state<br>
-E- Eventually correct</p>
+<h3 id="Aside:-ACID-and-BASE-databases">Aside: ACID and BASE databases<a class="anchor-link" href="#Aside:-ACID-and-BASE-databases">&#182;</a></h3><p>SQL characteristics:</p>
+<ul>
+<li>A- Atomicity  </li>
+<li>C- Consistency  </li>
+<li>I- Isolation  </li>
+<li>D- Durability  </li>
+</ul>
+<p>NoSQL (Wild West, anything not SQL..):</p>
+<ul>
+<li>B-  </li>
+<li>A- ^ Basically available  </li>
+<li>S- Soft state  </li>
+<li>E- Eventually correct  </li>
+</ul>
 <h5 id="OOP:-Encapsulation,-Inheritance,-Polymorphism,-Abstraction-(APIE!)">OOP: Encapsulation, Inheritance, Polymorphism, Abstraction (APIE!)<a class="anchor-link" href="#OOP:-Encapsulation,-Inheritance,-Polymorphism,-Abstraction-(APIE!)">&#182;</a></h5>
 </div>
 </div>
@@ -3881,7 +4114,7 @@ E- Eventually correct</p>
 </article>
 
     <footer>
-<p>&copy; Devin Rourke 2019</p>
+<p>&copy; Devin Rourke 2020</p>
 <p></p>    </footer>
   </main>
 

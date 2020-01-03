@@ -1321,47 +1321,47 @@ h6:hover .anchor-link {
 <p>4 Operations: GET, UPDATE, INSERT, DESTROY</p>
 <p>Many Keywords, for example DELETE FROM</p>
 <p><strong>Sample GET Query</strong></p>
-
-<pre><code>SELECT * FROM Customers WHERE Country = 'Germany' ORDER BY PostalCode DESC</code></pre>
-
-<pre><code>SELECT * FROM Products
-WHERE Price &gt;= 50
-ORDER BY ProductName DESC;</code></pre>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">Customers</span> <span class="k">WHERE</span> <span class="n">Country</span> <span class="o">=</span> <span class="s1">&#39;Germany&#39;</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">PostalCode</span> <span class="k">DESC</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">Products</span>
+<span class="k">WHERE</span> <span class="n">Price</span> <span class="o">&gt;=</span> <span class="mi">50</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">ProductName</span> <span class="k">DESC</span><span class="p">;</span>
+</pre></div>
 <p><strong>Sample UPDATE Query</strong></p>
-
-<pre><code>UPDATE (table name)
-SET (column name) = (value)
-WHERE (column name) = (value)</code></pre>
+<div class="highlight"><pre><span></span><span class="k">UPDATE</span> <span class="p">(</span><span class="k">table</span> <span class="n">name</span><span class="p">)</span>
+<span class="k">SET</span> <span class="p">(</span><span class="k">column</span> <span class="n">name</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<span class="k">WHERE</span> <span class="p">(</span><span class="k">column</span> <span class="n">name</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
 <p>ex.</p>
-
-<pre><code>UPDATE Products
-SET Unit = '16 lb pkgs.'
-WHERE ProductID = 18</code></pre>
-
-<pre><code>UPDATE OrderDetails
-SET Quantity = 12
-WHERE OrderID = 10248</code></pre>
+<div class="highlight"><pre><span></span><span class="k">UPDATE</span> <span class="n">Products</span>
+<span class="k">SET</span> <span class="n">Unit</span> <span class="o">=</span> <span class="s1">&#39;16 lb pkgs.&#39;</span>
+<span class="k">WHERE</span> <span class="n">ProductID</span> <span class="o">=</span> <span class="mi">18</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="k">UPDATE</span> <span class="n">OrderDetails</span>
+<span class="k">SET</span> <span class="n">Quantity</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="k">WHERE</span> <span class="n">OrderID</span> <span class="o">=</span> <span class="mi">10248</span>
+</pre></div>
 <p>^ OrderID isn't native to OrderDetails table</p>
 <p><strong>Sample INSERT Query</strong></p>
-
-<pre><code>INSERT INTO (table name)
-(column 1 name), (column 2 name), (column 3 name)
-VALUES (value 1, value 2, value 3)</code></pre>
-
-<pre><code>INSERT INTO OrderDetails
-(OrderID, ProductID, Quantity)
-VALUES
-(1,2,3),  
-(4,5,6)</code></pre>
+<div class="highlight"><pre><span></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="p">(</span><span class="k">table</span> <span class="n">name</span><span class="p">)</span>
+<span class="p">(</span><span class="k">column</span> <span class="mi">1</span> <span class="n">name</span><span class="p">),</span> <span class="p">(</span><span class="k">column</span> <span class="mi">2</span> <span class="n">name</span><span class="p">),</span> <span class="p">(</span><span class="k">column</span> <span class="mi">3</span> <span class="n">name</span><span class="p">)</span>
+<span class="k">VALUES</span> <span class="p">(</span><span class="n">value</span> <span class="mi">1</span><span class="p">,</span> <span class="n">value</span> <span class="mi">2</span><span class="p">,</span> <span class="n">value</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">OrderDetails</span>
+<span class="p">(</span><span class="n">OrderID</span><span class="p">,</span> <span class="n">ProductID</span><span class="p">,</span> <span class="n">Quantity</span><span class="p">)</span>
+<span class="k">VALUES</span>
+<span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span>  
+<span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
 <p>^ add a 2nd row<br>
 ^ database auto-increments native ID</p>
 <p><strong>Sample DESTROY Query</strong></p>
-
-<pre><code>DELETE FROM (table name)
-WHERE (condition)</code></pre>
-
-<pre><code>DELETE FROM OrderDetails
-WHERE OrderID = 10248</code></pre>
+<div class="highlight"><pre><span></span><span class="k">DELETE</span> <span class="k">FROM</span> <span class="p">(</span><span class="k">table</span> <span class="n">name</span><span class="p">)</span>
+<span class="k">WHERE</span> <span class="p">(</span><span class="n">condition</span><span class="p">)</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="k">DELETE</span> <span class="k">FROM</span> <span class="n">OrderDetails</span>
+<span class="k">WHERE</span> <span class="n">OrderID</span> <span class="o">=</span> <span class="mi">10248</span>
+</pre></div>
 <p>^ (must delete entire row)<br>
 ^ (table does not update all IDs to fill gaps)<br>
 ^ (foreign keys don't get deleted)</p>
@@ -1387,37 +1387,76 @@ WHERE OrderID = 10248</code></pre>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Sample INNER Join</strong>
 (merge related tables at a shared column into a single table)</p>
-
-<pre><code>SELECT Orders.OrderID, Customers.CustomerName
-FROM Orders
-INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID</code></pre>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">Orders</span><span class="p">.</span><span class="n">OrderID</span><span class="p">,</span> <span class="n">Customers</span><span class="p">.</span><span class="n">CustomerName</span>
+<span class="k">FROM</span> <span class="n">Orders</span>
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">Customers</span> <span class="k">ON</span> <span class="n">Orders</span><span class="p">.</span><span class="n">CustomerID</span> <span class="o">=</span> <span class="n">Customers</span><span class="p">.</span><span class="n">CustomerID</span>
+</pre></div>
 <p><strong>Sample LEFT Join</strong>
 (return all rows from left table, and matching records from the right table)
 This returns all customers and any OrderIDs that may by associated. If that customer didn't have an OrderID, <em>null</em> is inserted for OrderID</p>
-
-<pre><code>SELECT Customers.CustomerName, Orders.OrderID
-FROM Customers
-LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID
-ORDER BY Customers.CustomerName;</code></pre>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">Customers</span><span class="p">.</span><span class="n">CustomerName</span><span class="p">,</span> <span class="n">Orders</span><span class="p">.</span><span class="n">OrderID</span>
+<span class="k">FROM</span> <span class="n">Customers</span>
+<span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">Orders</span> <span class="k">ON</span> <span class="n">Customers</span><span class="p">.</span><span class="n">CustomerID</span> <span class="o">=</span> <span class="n">Orders</span><span class="p">.</span><span class="n">CustomerID</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">Customers</span><span class="p">.</span><span class="n">CustomerName</span><span class="p">;</span>
+</pre></div>
 <p><strong>Sample RIGHT Join</strong>
 (return all rows from the right table, and matching records from the left table)
 This returns all employees and any orders they may have placed.</p>
-
-<pre><code>SELECT Orders.OrderID, Employees.LastName, Employees.FirstName
-FROM Orders
-RIGHT JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID
-ORDER BY Orders.OrderID;</code></pre>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">Orders</span><span class="p">.</span><span class="n">OrderID</span><span class="p">,</span> <span class="n">Employees</span><span class="p">.</span><span class="n">LastName</span><span class="p">,</span> <span class="n">Employees</span><span class="p">.</span><span class="n">FirstName</span>
+<span class="k">FROM</span> <span class="n">Orders</span>
+<span class="k">RIGHT</span> <span class="k">JOIN</span> <span class="n">Employees</span> <span class="k">ON</span> <span class="n">Orders</span><span class="p">.</span><span class="n">EmployeeID</span> <span class="o">=</span> <span class="n">Employees</span><span class="p">.</span><span class="n">EmployeeID</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">Orders</span><span class="p">.</span><span class="n">OrderID</span><span class="p">;</span>
+</pre></div>
 <p><strong>Sample OUTER Join</strong>
 to combine all rows from one or more tables.
 no rows will be left out, all will be included in the joined tables.</p>
-
-<pre><code>SELECT Customers.CustomerName, Orders.OrderID
-FROM Customers
-FULL OUTER JOIN Orders ON Customers.CustomerID=Orders.CustomerID
-ORDER BY Customers.CustomerName;</code></pre>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">Customers</span><span class="p">.</span><span class="n">CustomerName</span><span class="p">,</span> <span class="n">Orders</span><span class="p">.</span><span class="n">OrderID</span>
+<span class="k">FROM</span> <span class="n">Customers</span>
+<span class="k">FULL</span> <span class="k">OUTER</span> <span class="k">JOIN</span> <span class="n">Orders</span> <span class="k">ON</span> <span class="n">Customers</span><span class="p">.</span><span class="n">CustomerID</span><span class="o">=</span><span class="n">Orders</span><span class="p">.</span><span class="n">CustomerID</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">Customers</span><span class="p">.</span><span class="n">CustomerName</span><span class="p">;</span>
+</pre></div>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
  
 
@@ -1477,7 +1516,7 @@ ORDER BY Customers.CustomerName;</code></pre>
 </article>
 
     <footer>
-<p>&copy; Devin Rourke 2019</p>
+<p>&copy; Devin Rourke 2020</p>
 <p></p>    </footer>
   </main>
 
